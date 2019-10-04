@@ -1,0 +1,48 @@
+#root{
+  display: flex;
+  flex-direction: column;
+  .header {
+    width: 100%;
+    height: 150px;
+    flex: 0 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .center {
+      width: 1080px;
+      height: 150px;
+      background-image: url("../assets/images/logo_bg.png");
+      background-size: 100% 100%;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+  }
+
+  .footer {
+    width: 100%;
+    flex: 0 0 auto;
+    height: 100px;
+
+    .center {
+      margin: 0 auto;
+      display: flex;
+      width: 1080px;
+      justify-content: center;
+      border: 1px solid rgb(78, 118, 202);
+      flex-direction: column;
+      height: 100px;
+      align-items: center;
+
+      p {
+        a {
+          cursor: pointer;
+          color: rgb(78, 118, 202);
+        }
+
+        flex: 1 50%;
+      }
+    }
+
+  }
+}
