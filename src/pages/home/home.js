@@ -1,14 +1,21 @@
 import React from 'react'
+import {Divider} from 'antd'
 import './home.scss'
-class Home extends React.Component{
-    render() {
-        return (
-            <div className='home'>
-                <p>Welcome to Jiyang College Online Judge</p>
-                <p>Did you AC today?</p>
-                <a>Let's Go</a>
+
+export default (props) => {
+    const {history}=props
+    return (
+        <div className='home'>
+            <div className="home-divider">
+                <Divider>
+                    Welcome to Jiyang College Online Judge
+                </Divider>
             </div>
-        )
-    }
+            <p>Did you AC today?</p>
+            <span className='go' onClick={() => {
+                history.push('/examList')
+            }}>Let's Go</span>
+        </div>
+    )
 }
-export default Home
+

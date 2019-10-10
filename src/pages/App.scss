@@ -18,7 +18,23 @@
       background-repeat: no-repeat;
     }
   }
-
+  .content{
+    width: 100%;
+    flex: 1;
+    .center{
+      width: 1080px;
+      margin: 0 auto;
+      .pending{
+        color: green;
+      }
+      .starting{
+        color: red;
+      }
+      .ending{
+        color: gray;
+      }
+    }
+  }
   .footer {
     width: 100%;
     flex: 0 0 auto;
@@ -35,12 +51,15 @@
       align-items: center;
 
       p {
-        a {
+        margin: 0;
+        line-height: 50px;
+        font-size: 15px;
+        flex: 1 50%;
+        span {
           cursor: pointer;
           color: rgb(78, 118, 202);
         }
 
-        flex: 1 50%;
       }
     }
 
