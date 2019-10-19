@@ -1,7 +1,7 @@
 import React from 'react'
 import './select.scss'
 import ajaxService from "../../utils/ajaxService";
-import {Button, Modal, Radio} from "antd";
+import {Button, Modal, Radio,message} from "antd";
 const RadioGroup=Radio.Group
 class select extends React.Component{
     constructor(props){
@@ -62,11 +62,13 @@ class select extends React.Component{
                 return
             }
         }
+        this.submitTF()
     }
     submitTF=()=>{
         let {answer,examId}=this.state
         ajaxService.submitSelect({examId,answer}).then(res=>{
             if (res.code===1){
+                message.success('提交成功')
                 this.getExamSelect()
             }
         })

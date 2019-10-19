@@ -2,46 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="641be80c-1942-43f5-bc47-aa6ad5e9e1df" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/config/env.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config/jest/cssTransform.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config/jest/fileTransform.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config/modules.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config/paths.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config/pnpTs.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config/webpack.config.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config/webpackDevServer.config.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scripts/build.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scripts/start.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scripts/test.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/exam/exam.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/exam/exam.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/examInfo/examInfo.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/examInfo/examInfo.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/examList/examList.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/examList/examList.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/gap/gap.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/gap/gap.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/login/login.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/login/login.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/program/program.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/program/program.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/select/select.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/select/select.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/trueOrFalse/trueOrFalse.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/trueOrFalse/trueOrFalse.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/utils/ajaxService.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/utils/ajaxUtil.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/utils/commonUtil.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/utils/cookieUtil.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/App.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/App.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/home/home.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/home/home.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/home/home.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/home/home.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/select/select.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/select/select.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/trueOrFalse/trueOrFalse.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/trueOrFalse/trueOrFalse.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -55,34 +18,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/utils/ajaxService.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
-              <folding>
-                <element signature="e#0#33#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/pages/examInfo/examInfo.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1095">
-              <caret line="77" selection-start-line="77" selection-end-line="77" />
-              <folding>
-                <element signature="e#0#25#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/pages/trueOrFalse/trueOrFalse.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="405">
-              <caret line="30" column="31" selection-start-line="30" selection-start-column="31" selection-end-line="30" selection-end-column="31" />
+            <state relative-caret-position="915">
+              <caret line="64" column="37" selection-start-line="64" selection-start-column="37" selection-end-line="64" selection-end-column="37" />
               <folding>
                 <element signature="e#0#25#0" expanded="true" />
               </folding>
@@ -102,8 +41,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/pages/select/select.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="420">
-              <caret line="31" column="20" selection-end-line="103" />
+            <state relative-caret-position="1110">
+              <caret line="77" column="43" selection-start-line="77" selection-start-column="43" selection-end-line="77" selection-end-column="43" />
               <folding>
                 <element signature="e#0#25#0" expanded="true" />
               </folding>
@@ -111,11 +50,32 @@
           </provider>
         </entry>
       </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/utils/commonUtil.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="405">
+              <caret line="27" selection-start-line="27" selection-end-line="39" selection-end-column="1" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/utils/ajaxUtil.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="345">
+              <caret line="23" column="59" selection-start-line="23" selection-start-column="59" selection-end-line="23" selection-end-column="59" />
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/pages/gap/gap.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="64" column="39" selection-start-line="64" selection-start-column="39" selection-end-line="64" selection-end-column="39" />
+            <state relative-caret-position="135">
+              <caret line="12" column="23" selection-start-line="12" selection-start-column="23" selection-end-line="12" selection-end-column="23" />
               <folding>
                 <element signature="e#0#25#0" expanded="true" />
               </folding>
@@ -127,7 +87,7 @@
         <entry file="file://$PROJECT_DIR$/src/pages/gap/gap.scss">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="840">
-              <caret line="56" column="12" lean-forward="true" selection-start-line="56" selection-start-column="12" selection-end-line="56" selection-end-column="12" />
+              <caret line="56" column="12" selection-start-line="56" selection-start-column="12" selection-end-line="56" selection-end-column="12" />
             </state>
           </provider>
         </entry>
@@ -222,14 +182,14 @@
         <option value="$PROJECT_DIR$/src/pages/program/program.js" />
         <option value="$PROJECT_DIR$/src/pages/program/program.scss" />
         <option value="$PROJECT_DIR$/src/pages/trueOrFalse/trueOrFalse.scss" />
-        <option value="$PROJECT_DIR$/src/pages/trueOrFalse/trueOrFalse.js" />
         <option value="$PROJECT_DIR$/src/pages/select/select.scss" />
-        <option value="$PROJECT_DIR$/src/pages/select/select.js" />
         <option value="$PROJECT_DIR$/src/pages/gap.js" />
         <option value="$PROJECT_DIR$/src/pages/App.js" />
         <option value="$PROJECT_DIR$/src/utils/ajaxService.js" />
         <option value="$PROJECT_DIR$/src/pages/gap/gap.scss" />
         <option value="$PROJECT_DIR$/src/pages/gap/gap.js" />
+        <option value="$PROJECT_DIR$/src/pages/trueOrFalse/trueOrFalse.js" />
+        <option value="$PROJECT_DIR$/src/pages/select/select.js" />
       </list>
     </option>
   </component>
@@ -239,10 +199,11 @@
     <other-services-enabled>true</other-services-enabled>
     <auto-save>true</auto-save>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="y" value="23" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-27" />
+    <option name="y" value="124" />
     <option name="width" value="1440" />
-    <option name="height" value="823" />
+    <option name="height" value="814" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -357,7 +318,7 @@
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/utils" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -439,12 +400,31 @@
       <workItem from="1570583100354" duration="3772000" />
       <workItem from="1570624990885" duration="2772000" />
       <workItem from="1570669762596" duration="3860000" />
-      <workItem from="1570712059959" duration="657000" />
+      <workItem from="1570712059959" duration="1015000" />
+      <workItem from="1570715893297" duration="8000" />
+      <workItem from="1570756888870" duration="1895000" />
+      <workItem from="1570759466858" duration="2625000" />
+      <workItem from="1570842537438" duration="1243000" />
+      <workItem from="1570948305459" duration="3375000" />
+      <workItem from="1571101907802" duration="1795000" />
+      <workItem from="1571145852096" duration="1479000" />
+      <workItem from="1571187229918" duration="2345000" />
+      <workItem from="1571273744220" duration="599000" />
+      <workItem from="1571275905783" duration="686000" />
+      <workItem from="1571455129229" duration="604000" />
     </task>
+    <task id="LOCAL-00001" summary="学生">
+      <created>1570713424540</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1570713424540</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="115953000" />
+    <option name="totallyTimeSpent" value="132965000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -456,8 +436,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1440" height="823" extended-state="0" />
-    <editor active="true" />
+    <frame x="-27" y="124" width="1440" height="814" extended-state="0" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24947146" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -465,7 +444,7 @@
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32968536" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32825485" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -481,6 +460,10 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="学生" />
+    <option name="LAST_COMMIT_MESSAGE" value="学生" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/node_modules/webpack/package.json">
@@ -635,13 +618,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/utils/commonUtil.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="600">
-          <caret line="40" lean-forward="true" selection-start-line="40" selection-end-line="40" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/examList/examList.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
@@ -656,16 +632,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="916">
           <caret line="84" column="27" selection-start-line="84" selection-start-column="27" selection-end-line="84" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/utils/ajaxUtil.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="125">
-          <caret line="23" column="59" selection-start-line="23" selection-start-column="59" selection-end-line="23" selection-end-column="59" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -692,8 +658,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/trueOrFalse/trueOrFalse.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="30" column="31" selection-start-line="30" selection-start-column="31" selection-end-line="30" selection-end-column="31" />
+        <state relative-caret-position="915">
+          <caret line="64" column="37" selection-start-line="64" selection-start-column="37" selection-end-line="64" selection-end-column="37" />
           <folding>
             <element signature="e#0#25#0" expanded="true" />
           </folding>
@@ -709,8 +675,25 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/select/select.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="31" column="20" selection-end-line="103" />
+        <state relative-caret-position="1110">
+          <caret line="77" column="43" selection-start-line="77" selection-start-column="43" selection-end-line="77" selection-end-column="43" />
+          <folding>
+            <element signature="e#0#25#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/utils/commonUtil.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="27" selection-start-line="27" selection-end-line="39" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/gap/gap.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="12" column="23" selection-start-line="12" selection-start-column="23" selection-end-line="12" selection-end-column="23" />
           <folding>
             <element signature="e#0#25#0" expanded="true" />
           </folding>
@@ -720,7 +703,7 @@
     <entry file="file://$PROJECT_DIR$/src/pages/gap/gap.scss">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="840">
-          <caret line="56" column="12" lean-forward="true" selection-start-line="56" selection-start-column="12" selection-end-line="56" selection-end-column="12" />
+          <caret line="56" column="12" selection-start-line="56" selection-start-column="12" selection-end-line="56" selection-end-column="12" />
         </state>
       </provider>
     </entry>
@@ -751,12 +734,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/gap/gap.js">
+    <entry file="file://$PROJECT_DIR$/src/utils/ajaxUtil.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="64" column="39" selection-start-line="64" selection-start-column="39" selection-end-line="64" selection-end-column="39" />
+        <state relative-caret-position="345">
+          <caret line="23" column="59" selection-start-line="23" selection-start-column="59" selection-end-line="23" selection-end-column="59" />
           <folding>
-            <element signature="e#0#25#0" expanded="true" />
+            <element signature="e#0#26#0" expanded="true" />
           </folding>
         </state>
       </provider>

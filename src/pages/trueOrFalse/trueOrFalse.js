@@ -1,7 +1,7 @@
 import React from 'react'
 import './trueOrFalse.scss'
 import ajaxService from "../../utils/ajaxService";
-import {Radio,Button,Modal} from "antd";
+import {Radio,Button,Modal,message} from "antd";
 
 const RadioGroup = Radio.Group
 
@@ -56,11 +56,13 @@ class trueOrFalse extends React.Component {
                 return
             }
         }
+        this.submitTF()
     }
     submitTF=()=>{
         let {answer,examId}=this.state
         ajaxService.submitTF({examId,answer}).then(res=>{
             if (res.code===1){
+                message.success('提交成功')
                 this.getExamTF()
             }
         })
