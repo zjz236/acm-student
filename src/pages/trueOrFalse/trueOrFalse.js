@@ -94,7 +94,7 @@ class trueOrFalse extends React.Component {
                 <RadioGroup  disabled={this.state.examStatus!=='starting'} onChange={(value) => this.answerChange(value, i)} value={this.state.answer[i].answer}><Radio
                     value={1}>正确</Radio><Radio value={0}>错误</Radio></RadioGroup>
                 <br/>
-                {data.isTrue===0?(<p className="correct">正确答案:{data.answer},您的答案:{data.as}</p>):''}
+                {data.isTrue===0?(<p className="correct">正确答案:{data.answer?'正确':'错误'},您的答案:{data.as===1?'正确':(data.as===0?'错误':'')}</p>):''}
             </div>)
         }
         return dom
