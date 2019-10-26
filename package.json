@@ -2,7 +2,6 @@
   "name": "acm-student",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://acm.zjzhmx.xyz",
   "dependencies": {
     "@babel/core": "7.6.0",
     "@loadable/component": "^5.10.3",
