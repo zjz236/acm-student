@@ -2,27 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="641be80c-1942-43f5-bc47-aa6ad5e9e1df" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/public/logo.ico" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/editInfo/editInfo.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/editInfo/editInfo.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/rankList/rankList.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/rankList/rankList.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/utils/setTitle.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/exam/exam.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/exam/exam.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/gap/gap.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/gap/gap.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/home/home.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/home/home.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/login/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/login/login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/program/program.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/program/program.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/select/select.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/select/select.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/select/select.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/select/select.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/trueOrFalse/trueOrFalse.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/trueOrFalse/trueOrFalse.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/trueOrFalse/trueOrFalse.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/trueOrFalse/trueOrFalse.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/ajaxService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/ajaxService.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -103,7 +84,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/index.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="60">
@@ -112,14 +93,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/pages/home/home.js">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/package.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="2" column="20" lean-forward="true" selection-start-line="2" selection-start-column="20" selection-end-line="2" selection-end-column="20" />
-              <folding>
-                <element signature="e#0#25#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="150">
+              <caret line="10" column="38" lean-forward="true" selection-start-line="10" selection-start-column="38" selection-end-line="10" selection-end-column="38" />
             </state>
           </provider>
         </entry>
@@ -209,13 +187,13 @@
         <option value="$PROJECT_DIR$/src/pages/gap/gap.js" />
         <option value="$PROJECT_DIR$/src/pages/select/select.js" />
         <option value="$PROJECT_DIR$/src/pages/program/program.js" />
-        <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/src/pages/home/home.js" />
         <option value="$PROJECT_DIR$/src/utils/setTitle.js" />
         <option value="$PROJECT_DIR$/src/pages/rankList/rankList.js" />
         <option value="$PROJECT_DIR$/src/pages/trueOrFalse/trueOrFalse.js" />
         <option value="$PROJECT_DIR$/src/pages/App.js" />
         <option value="$PROJECT_DIR$/public/index.html" />
+        <option value="$PROJECT_DIR$/package.json" />
       </list>
     </option>
   </component>
@@ -454,7 +432,7 @@
       <workItem from="1571793058700" duration="1197000" />
       <workItem from="1571879581070" duration="1231000" />
       <workItem from="1571965488679" duration="1924000" />
-      <workItem from="1572065810013" duration="13263000" />
+      <workItem from="1572065810013" duration="14791000" />
     </task>
     <task id="LOCAL-00001" summary="学生">
       <created>1570713424540</created>
@@ -470,11 +448,25 @@
       <option name="project" value="LOCAL" />
       <updated>1571467233529</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="学生">
+      <created>1572081719396</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1572081719396</updated>
+    </task>
+    <task id="LOCAL-00004" summary="学生">
+      <created>1572086089655</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1572086089655</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="155382000" />
+    <option name="totallyTimeSpent" value="156910000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -495,7 +487,7 @@
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.318306" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.318306" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -503,7 +495,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32968536" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="10" weight="0.32916668" />
+      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.32786885" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -746,13 +738,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1486">
-          <caret line="112" column="7" selection-start-line="112" selection-start-column="7" selection-end-line="112" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/home/home.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
@@ -840,6 +825,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
           <caret line="4" column="44" selection-start-line="4" selection-start-column="44" selection-end-line="4" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="38" lean-forward="true" selection-start-line="10" selection-start-column="38" selection-end-line="10" selection-end-column="38" />
         </state>
       </provider>
     </entry>
