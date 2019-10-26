@@ -1,7 +1,8 @@
 import React from 'react'
 import './select.scss'
 import ajaxService from "../../utils/ajaxService";
-import {Button, Modal, Radio,message} from "antd";
+import {Button, Modal, Radio, message} from "antd";
+import {getExamStatus} from "../../utils/commonUtil";
 const RadioGroup=Radio.Group
 class select extends React.Component{
     constructor(props){
@@ -10,13 +11,26 @@ class select extends React.Component{
         this.state = {
             examId: id,
             answer:[],
-            selectDom:[]
+            selectDom:[],
+            examStatus:''
         }
     }
     componentDidMount() {
         this.getExamSelect()
+        this.getExamStatus()
     }
 
+    getExamStatus = () => {
+        ajaxService.getExamStatus({examId: this.state.examId}).then(res => {
+            if (res.code === 1) {
+                this.setState({
+                    examStatus: getExamStatus(res.data.start,res.data.finish)
+                })
+            }
+        }).catch(res => {
+            this.props.history.replace('/')
+        })
+    }
     getExamSelect=()=>{
         const {examId}=this.state
         let answer=[]
@@ -84,7 +98,9 @@ class select extends React.Component{
                 <div className="select-content">
                     <div className="description" dangerouslySetInnerHTML={{__html:data.description}}>
                     </div>
-                    <div className="option"><RadioGroup onChange={(value)=>this.answerChange(value,i)} value={answer[i].answer}>{this.optionDom(data.options)}</RadioGroup></div>
+                    <div className="option"><RadioGroup  disabled={this.state.examStatus!=='starting'} onChange={(value)=>this.answerChange(value,i)} value={answer[i].answer}>{this.optionDom(data.options)}</RadioGroup></div>
+                    <br/>
+                    {data.isTrue===0?(<p className="correct">正确答案:{String.fromCharCode(65+data.answer)},您的答案:{String.fromCharCode(65+data.as)}</p>):''}
                 </div>
             </div>)
         }
@@ -97,7 +113,7 @@ class select extends React.Component{
                 {this.getSelectDom()}
             </div>
             <div className="button">
-                <Button type='primary' onClick={this.handleSubmit}>提交</Button>
+                {this.state.examStatus==='starting'&&<Button type='primary' onClick={this.handleSubmit}>提交</Button>}
             </div>
         </div>)
     }

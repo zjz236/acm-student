@@ -2,6 +2,7 @@ import React from 'react'
 import './trueOrFalse.scss'
 import ajaxService from "../../utils/ajaxService";
 import {Radio,Button,Modal,message} from "antd";
+import {getExamStatus} from "../../utils/commonUtil";
 
 const RadioGroup = Radio.Group
 
@@ -13,10 +14,12 @@ class trueOrFalse extends React.Component {
             examId: id,
             tfDom: [],
             answer: [],
+            examStatus:''
         }
     }
 
     componentDidMount() {
+        this.getExamStatus()
         this.getExamTF()
     }
 
@@ -33,6 +36,17 @@ class trueOrFalse extends React.Component {
                     answer
                 })
             }
+        })
+    }
+    getExamStatus = () => {
+        ajaxService.getExamStatus({examId: this.state.examId}).then(res => {
+            if (res.code === 1) {
+                this.setState({
+                    examStatus: getExamStatus(res.data.start,res.data.finish)
+                })
+            }
+        }).catch(res => {
+            this.props.history.replace('/')
         })
     }
     answerChange = (value, index) => {
@@ -77,8 +91,10 @@ class trueOrFalse extends React.Component {
                 <span className="id">{i + 1}.<br/>2分</span>
                 <div className="tf-content" dangerouslySetInnerHTML={{__html: data.description}}>
                 </div>
-                <RadioGroup onChange={(value) => this.answerChange(value, i)} value={this.state.answer[i].answer}><Radio
+                <RadioGroup  disabled={this.state.examStatus!=='starting'} onChange={(value) => this.answerChange(value, i)} value={this.state.answer[i].answer}><Radio
                     value={1}>正确</Radio><Radio value={0}>错误</Radio></RadioGroup>
+                <br/>
+                {data.isTrue===0?(<p className="correct">正确答案:{data.answer},您的答案:{data.as}</p>):''}
             </div>)
         }
         return dom
@@ -92,7 +108,7 @@ class trueOrFalse extends React.Component {
                 {this.getTFDom()}
             </div>
             <div className="button">
-                <Button type='primary' onClick={this.handleSubmit}>提交</Button>
+                {this.state.examStatus==='starting'&&<Button type='primary' onClick={this.handleSubmit}>提交</Button>}
             </div>
         </div>)
     }

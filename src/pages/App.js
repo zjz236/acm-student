@@ -3,7 +3,6 @@ import loadable from "@loadable/component";
 import {BrowserRouter, Route, Switch, Redirect} from "react-router-dom";
 import Exam from './exam/exam'
 import './App.scss'
-
 export default () => {
     return (<BrowserRouter>
         <div className="header">
@@ -23,6 +22,8 @@ export default () => {
                         <Route extra path={'/exam/trueOrFalse/:id'} component={loadable(() => import(/* webpackChunkName: "trueOrFalse" */ './trueOrFalse/trueOrFalse'))}/>
                         <Route extra path={'/exam/select/:id'} component={loadable(() => import(/* webpackChunkName: "select" */ './select/select'))}/>
                         <Route extra path={'/exam/gap/:id'} component={loadable(() => import(/* webpackChunkName: "gap" */ './gap/gap'))}/>
+                        <Route extra path={'/exam/rankList/:id'} component={loadable(() => import(/* webpackChunkName: "rankList" */ './rankList/rankList'))}/>
+                        <Route extra path={'/exam/editInfo/:id'} component={loadable(() => import(/* webpackChunkName: "editInfo" */ './editInfo/editInfo'))}/>
                     </Exam>}/>
                     <Route component={() => <Redirect to={'/'} push={false}/>}/>
                 </Switch>

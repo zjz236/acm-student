@@ -2,7 +2,7 @@ import React from 'react'
 import './program.scss'
 import {Button, Modal, Input, Table} from "antd";
 import ajaxService from "../../utils/ajaxService";
-import {getProgramScore, getProgramStatus} from "../../utils/commonUtil";
+import {getExamStatus, getProgramScore, getProgramStatus} from "../../utils/commonUtil";
 
 const {TextArea} = Input
 let timmer = null
@@ -19,6 +19,7 @@ class program extends React.Component {
             programScore:'',
             programError:[],
             modalShow: false,
+            examStatus:'',
             statusShow: false,
             columns: [
                 {
@@ -53,6 +54,7 @@ class program extends React.Component {
 
     componentDidMount() {
         this.getExamProgram()
+        this.getExamStatus()
     }
 
     getExamProgram = () => {
@@ -60,6 +62,18 @@ class program extends React.Component {
             if (res.code === 1) {
                 this.programDomInsert(res.data)
             }
+        })
+    }
+
+    getExamStatus = () => {
+        ajaxService.getExamStatus({examId: this.state.examId}).then(res => {
+            if (res.code === 1) {
+                this.setState({
+                    examStatus: getExamStatus(res.data.start,res.data.finish)
+                })
+            }
+        }).catch(res => {
+            this.props.history.replace('/')
         })
     }
     getProgramStatus = (id) => {
@@ -161,12 +175,12 @@ class program extends React.Component {
             </div>
             <Modal width={900} visible={modalShow} onCancel={() => this.setState({modalShow: false})}
                    footer={[
-                       <Button key="submit" type="primary" onClick={() => this.codeSubmit(index)}>
+                       this.state.examStatus==='starting'?<Button key="submit" type="primary" onClick={() => this.codeSubmit(index)}>
                            提交
-                       </Button>,
+                       </Button>:<div></div>,
                    ]}
                    title={program[index] ? program[index].title : ''}>
-                <TextArea placeholder="请输入代码" autosize={{minRows: 10, maxRows: 10}}
+                <TextArea disabled={this.state.examStatus!=='starting'} placeholder="请输入代码" autosize={{minRows: 10, maxRows: 10}}
                           onChange={(e) => this.codeInput(e, index)}
                           value={program[index] ? (program[index].answer ? program[index].answer : '') : ''}/>
             </Modal>

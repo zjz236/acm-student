@@ -2,6 +2,7 @@ import React from 'react'
 import './gap.scss'
 import ajaxService from "../../utils/ajaxService";
 import {Button, Modal, Input, message} from "antd";
+import {getExamStatus} from "../../utils/commonUtil";
 
 class select extends React.Component {
     constructor(props) {
@@ -13,13 +14,26 @@ class select extends React.Component {
             gapDom: [],
             gapId: '',
             code: '',
+            examStatus:''
         }
     }
 
     componentDidMount() {
         this.getExamGap()
+        this.getExamStatus()
     }
 
+    getExamStatus = () => {
+        ajaxService.getExamStatus({examId: this.state.examId}).then(res => {
+            if (res.code === 1) {
+                this.setState({
+                    examStatus: getExamStatus(res.data.start,res.data.finish)
+                })
+            }
+        }).catch(res => {
+            this.props.history.replace('/')
+        })
+    }
     getExamGap = () => {
         const {examId} = this.state
         let answer = []
@@ -51,7 +65,7 @@ class select extends React.Component {
         let dom = []
         let {answer} = this.state
         for (let i = 0; i < num; i++) {
-            dom.push(<div className="gap" key={i}><label>填空{i + 1}</label><Input
+            dom.push(<div className="gap" key={i}><label>填空{i + 1}</label><Input disabled={this.state.examStatus!=='starting'}
                 onChange={(value) => this.gapChange(value, index, i)} key={i} value={answer[index].answer[i]}/></div>)
         }
         return dom
@@ -96,8 +110,8 @@ class select extends React.Component {
                 <div className="gaps">
                     {this.gapDom(data.num, i)}
                 </div>
-                <div className="button"><Button className="read" onClick={() => this.dataShow(i)}>查看代码</Button><Button
-                    onClick={() => this.submitGap(i, data.Id)} className="submit">提交</Button></div>
+                <div className="button"><Button className="read" onClick={() => this.dataShow(i)}>查看代码</Button>{this.state.examStatus==='starting'&&<Button
+                    onClick={() => this.submitGap(i, data.Id)} className="submit">提交</Button>}</div>
             </div>)
         }
         return dom

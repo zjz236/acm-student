@@ -23,7 +23,7 @@ class login extends React.Component {
         e.preventDefault()
         this.props.form.validateFields((err,values)=>{
             if (!err){
-                if (this.state.examStatus.isTest===0&&getExamStatus(this.state.examStatus.start,this.state.examStatus.finish)==='starting'){
+                if (this.state.examStatus.isTest===1&&getExamStatus(this.state.examStatus.start,this.state.examStatus.finish)==='starting'){
                     Modal.confirm({
                         title:'Please confirm',
                         content:'You will now take an exam and will not be able to change your computer after logging in.',

@@ -1,7 +1,6 @@
 import React from 'react'
 import {Divider} from 'antd'
 import './home.scss'
-
 export default (props) => {
     const {history}=props
     return (

@@ -45,5 +45,7 @@ const ajaxService = {
     submitSelect: createAssistantApiMethod('api/studentExam/submitSelect'),
     getExamGap: createAssistantApiMethod('api/studentExam/getExamGap'),
     submitGap: createAssistantApiMethod('api/studentExam/submitGap'),
+    studentRank: createAssistantApiMethod('api/studentExam/studentRank'),
+    editStudentPwd: createAssistantApiMethod('api/studentExam/editStudentPwd'),
 }
 export default ajaxService

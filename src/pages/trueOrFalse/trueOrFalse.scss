@@ -18,6 +18,7 @@
     .tf-list {
       display: flex;
       width: 90%;
+      flex-wrap: wrap;
       margin-bottom: 20px;
       .id{
         width: 50px;
@@ -26,7 +27,7 @@
         font-weight: bold;
         text-align: center;
       }
-      .tf-content{
+      .tf-content {
         width: 750px;
         flex: 0 0 auto;
         max-height: 200px;
@@ -36,7 +37,9 @@
         background: #fbfbfb;
         margin-right: 10px;
       }
-
+    }
+    .correct{
+      color: red;
     }
   }
   .button{
