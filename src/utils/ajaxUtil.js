@@ -2,7 +2,12 @@ import axios from 'axios';
 import {setCookie, getCookie} from './cookieUtil';
 
 const timeout = 30 * 1000;
-const baseURL = 'http://127.0.0.1:1236'
+let baseURL
+if (process.env.NODE_ENV==='development'){
+    baseURL = 'http://127.0.0.1:1236'
+} else {
+    baseURL = 'https://zjyc.zjzhmx.xyz'
+}
 const headers = {'Content-Type': 'application/json', 'Accept': 'application/json'};
 const axiosInstance = axios.create({baseURL, timeout, headers});
 
