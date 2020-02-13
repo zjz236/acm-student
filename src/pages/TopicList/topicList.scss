@@ -1,9 +1,8 @@
-.login {
+.topic-list {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-
   .examName {
     font-size: 28px;
   }
@@ -12,6 +11,7 @@
     span {
       margin: 0 30px;
     }
+
     margin: 20px auto 50px auto;
   }
 }

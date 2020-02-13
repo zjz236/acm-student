@@ -1,84 +1,83 @@
-import React from 'react'
-import './rankList.scss'
-import {Table} from "antd";
-import ajaxService from "../../utils/ajaxService";
-const columns=[
-    {
-        key:'sort',
-        dataIndex:'sort',
-        title:'排名',
-        align:'center',
-        render:(text,record,index)=>(
-            <div>{index+1}</div>
-        )
-    },
-    {
-        key:'username',
-        dataIndex:'username',
-        title:'账号',
-        align:'center'
-    },
-    {
-        key:'studentId',
-        dataIndex:'studentId',
-        title:'学号',
-        align:'center'
-    },
-    {
-        key:'name',
-        dataIndex:'name',
-        title:'姓名',
-        align:'center'
-    },
-    {
-        key:'school',
-        dataIndex:'school',
-        title:'学校',
-        align:'center'
-    },
-    {
-        key:'college',
-        dataIndex:'college',
-        title:'学院',
-        align:'center'
-    },
-    {
-        key:'major',
-        dataIndex:'major',
-        title:'专业',
-        align:'center'
-    },
-    {
-        key:'score',
-        dataIndex:'score',
-        title:'成绩',
-        align:'center'
-    }
-]
-class rankList extends React.Component{
-    constructor(props){
-        super(props)
-        this.state={
-            data:[]
-        }
-    }
-    componentDidMount() {
-        this.studentRank()
-    }
+import React from 'react';
+import './rankList.scss';
+import store from '@/store';
+import { Table } from 'antd';
+import exam from '@/api/exam';
+import rank from '@/api/rank';
 
-    studentRank=()=>{
-        ajaxService.studentRank({examId:5}).then(res=>{
-            if (res.code===1){
-                this.setState({
-                    data:res.data
-                })
-            }
-        })
+const { Column } = Table;
+
+class RankList extends React.Component {
+  constructor(props) {
+    super(props);
+    const { match: { params } } = props;
+    this.state = {
+      examId: params.examId,
+      rankList: [],
+      pageSize: 20,
+      pageNo: 1,
+      total: 0,
+    };
+  }
+
+  componentDidMount() {
+    this.getExamInfo();
+    this.getRankList();
+  }
+
+  getRankList = async () => {
+    const { examId, pageSize, pageNo } = this.state;
+    try {
+      const { data: { list, total } } = await rank.getRankList({ examId, pageSize, pageNo });
+      this.setState({
+        rankList: list,
+        total,
+      });
+    } catch (e) {
+      console.error(e);
     }
-    render() {
-        return (<div className='rank-list'>
-            <Table columns={columns} rowKey="username" dataSource={this.state.data} pagination={false}></Table>
-        </div>)
+  };
+
+  currentPageChange = async (page) => {
+    await this.setState({ pageNo: page });
+    this.getRankList();
+  };
+
+  getExamInfo = async () => {
+    try {
+      const { examId } = this.state;
+      const action = {
+        type: 'user',
+        examId: examId,
+      };
+      store.dispatch(action);
+      const { data } = await exam.getExamInfo({ examId });
+      this.setState({
+        examInfo: data,
+      });
+    } catch (e) {
+      console.error(e);
     }
+  };
+
+  render() {
+    const { rankList, total, pageSize, pageNo } = this.state;
+    return (<div className="rank-list">
+      <h1>成绩排名</h1>
+      <Table dataSource={rankList} rowKey="_id" pagination={{
+        total: total, pageSize: pageSize, current: pageNo,
+        onChange: this.currentPageChange,
+      }}>
+        <Column title="名次" key="id" dataIndex="id" render={(text, record, index) => (<span>
+          {parseInt(index) + pageSize * (pageNo - 1) + 1}
+        </span>)}/>
+        <Column title="用户名" key="username" dataIndex="username"/>
+        <Column title="学号" key="studentId" dataIndex="studentId"/>
+        <Column title="姓名" key="name" dataIndex="name"/>
+        <Column title="成绩" key="score" dataIndex="score"/>
+      </Table>
+    </div>);
+  }
 }
-export default rankList
+
+export default RankList;

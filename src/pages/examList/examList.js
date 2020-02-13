@@ -1,157 +1,140 @@
-import React from 'react'
-import './examList.scss'
-import {Input, Select, Breadcrumb, Pagination, Table} from 'antd';
-import ajaxService from "../../utils/ajaxService";
-import {getAllTime, getExamStatus} from "../../utils/commonUtil";
+import React from 'react';
+import { Table, Breadcrumb, Input, Select, Tag } from 'antd';
+import exam from '@/api/exam';
+import moment from 'moment';
+import Link from 'umi/link';
+import { examStatus, badgeColor } from '@/common/common';
+import './examList.scss';
 
-const BreadcrumbItem = Breadcrumb.Item
-const InputGroup = Input.Group;
-const {Search} = Input;
-const {Option} = Select;
-const columns = [
-    {
-        title: 'Id',
-        dataIndex: 'Id',
-        key: 'Id',
-        width: 60,
-        align: 'center'
-    },
-    {
-        title: 'Exam Name',
-        dataIndex: 'name',
-        width: 400,
-        key: 'name',
-        render:(text,record,index)=>{
-            return (<a href={`/exam/examInfo/${record.Id}`}>{text}</a>)
-        },
-        className:'name',
-        align: 'center'
-    },
-    {
-        title: 'Start Time',
-        dataIndex: 'start',
-        key: 'start',
-        render: (text, record, index) => {
-            return (<div>{getAllTime(text)}</div>)
-        },
-        width: 200,
-        align: 'center'
-    },
-    {
-        title: 'Finish Time',
-        dataIndex: 'finish',
-        key: 'finish',
-        render: (text, record, index) => {
-            return (<div>{getAllTime(text)}</div>)
-        },
-        width: 200,
-        align: 'center'
-    },
-    {
-        title: 'Exam Status',
-        dataIndex: 'status',
-        key: 'status',
-        render: (text, record, index) => {
-            return (<div className={getExamStatus(record.start, record.finish)}>{getExamStatus(record.start, record.finish)}</div>)
-        },
-        width:100,
-        align: 'center'
-    },
-    {
-        title: 'Exam Type',
-        dataIndex: 'type',
-        key: 'type',
-        render: (text, record, index) => {
-            return (<div>{record.isTest ? 'exam' : 'exercise'}</div>)
-        },
-        width:80,
-        align: 'center'
-    },
-    {
-        title: 'Holder',
-        dataIndex: 'holder',
-        key: 'holder',
-        align: 'center',
-        width:80,
-    }
-]
+const { Column } = Table;
+const { Item: BreadcrumbItem } = Breadcrumb;
+const { Group: InputGroup, Search } = Input;
+const { Option } = Select;
 
-class examList extends React.Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            searchContent: '',
-            searchType: 0,
-            examStatus: '',
-            total: 0,
-            load: true,
-            currentPage: 1,
-            pageSize: 20,
-            dataSource: []
-        }
-    }
+class ExamList extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      examData: [],
+      loading: false,
+      total: 0,
+      pageNo: 1,
+      pageSize: 20,
+      searchType: 'teacher',
+      searchText: '',
+      status: '',
+    };
+  }
 
-    componentDidMount() {
-        this.getExamList()
-    }
+  componentDidMount() {
+    this.getExamList();
+  }
 
-    getExamList = () => {
-        this.setState({
-            load: true
-        })
-        let {searchContent, searchType, examStatus, currentPage, pageSize} = this.state
-        let data = {searchContent, searchType, examStatus, page: currentPage - 1, limit: pageSize}
-        ajaxService.getExamList(data).then(res => {
-            if (res.code === 1) {
-                this.setState({
-                    dataSource: res.data,
-                    total: res.total,
-                    load: false
-                })
-            }
-        })
+  getExamList = async () => {
+    await this.setState({
+      loading: true,
+    });
+    const { pageNo, pageSize, searchType, searchText, status } = this.state;
+    try {
+      const { data: { list, total } } = await exam.getExamList({ pageNo, pageSize, searchType, searchText, status });
+      this.setState({
+        examData: list,
+        total,
+      });
+    } catch (e) {
+      console.error(e);
+    } finally {
+      this.setState({
+        loading: false,
+      });
     }
-    pageChange = async (page) => {
-        await this.setState({currentPage: page})
-        this.getExamList()
-    }
-    getSearch=async (value,event)=>{
-        await this.setState({searchContent:value})
-        this.getExamList()
-    }
-    timeSelect=async (time)=>{
-        await this.setState({examStatus:time})
-        this.getExamList()
-    }
+  };
 
-    render() {
-        return (
-            <div className="exam-list">
-                <div className="title">
-                    C/C++/Java Exam List
-                </div>
-                <Breadcrumb><BreadcrumbItem><span
-                    className="pending" onClick={()=>this.timeSelect(0)}>pending</span></BreadcrumbItem><BreadcrumbItem><span
-                    className="starting" onClick={()=>this.timeSelect(1)}>starting</span></BreadcrumbItem><BreadcrumbItem><span
-                    className="ending" onClick={()=>this.timeSelect(2)}>ending</span></BreadcrumbItem></Breadcrumb>
-                <div className="search-page">
-                    <div className="search-bar">
-                        <InputGroup compact={true}>
-                            <Select onSelect={(value)=>{this.setState({searchType:value})}} value={this.state.searchType}><Option value={0}>holder</Option><Option
-                                value={1}>title</Option></Select>
-                            <Search onSearch={(value,event)=>this.getSearch(value,event)} placeholder="input search text" />
-                        </InputGroup>
-                    </div>
-                    <div className="page-bar">
-                        <Pagination onChange={page => this.pageChange(page)} current={this.state.currentPage}
-                                    pageSize={this.state.pageSize} total={this.state.total} />
-                    </div>
-                </div>
-                <Table loading={this.state.load} columns={columns} pagination={false} rowKey="Id"
-                       dataSource={this.state.dataSource}/>
-            </div>
-        )
-    }
+  currentPageChange = async (page) => {
+    await this.setState({ pageNo: page });
+    this.getExamList();
+  };
+
+  changeStatus = async (status) => {
+    await this.setState({
+      status,
+    });
+    this.getExamList();
+  };
+
+  render() {
+    const { examData, loading, total, pageSize, searchType, searchText, pageNo } = this.state;
+    return (
+      <div className="exam-list">
+        <div className="title">全部 C/C++/Java/Python 考试</div>
+        <div className="status">
+          <Breadcrumb>
+            <BreadcrumbItem onClick={() => this.changeStatus('')}><span
+              style={{ cursor: 'pointer', color: '#000' }}>All</span></BreadcrumbItem>
+            <BreadcrumbItem onClick={() => this.changeStatus('pending')}><span
+              style={{ cursor: 'pointer' }}
+              className="pending">Pending</span></BreadcrumbItem>
+            <BreadcrumbItem onClick={() => this.changeStatus('starting')}><span
+              style={{ cursor: 'pointer' }}
+              className="starting">Starting</span></BreadcrumbItem>
+            <BreadcrumbItem onClick={() => this.changeStatus('ending')}><span
+              style={{ cursor: 'pointer' }}
+              className="ending">Ending</span></BreadcrumbItem>
+          </Breadcrumb>
+        </div>
+        <div className="search">
+          <InputGroup compact>
+            <Select style={{ width: 100 }} value={searchType} onChange={e => this.setState({ searchType: e })}>
+              <Option value="teacher">教师</Option>
+              <Option value="examName">考试名称</Option>
+            </Select>
+            <Search style={{ width: '20%' }} value={searchText}
+                    placeholder="请输入搜索内容"
+                    onSearch={this.getExamList}
+                    onChange={(e) => this.setState({ searchText: e.target.value })}/>
+          </InputGroup>
+        </div>
+        <Table loading={loading} dataSource={examData} pagination={{
+          position: 'bottom',
+          total,
+          pageSize,
+          current: pageNo,
+          onChange: this.currentPageChange,
+        }}
+               rowKey="_id">
+          <Column title="考试名称" dataIndex="examName" key="examName" render={(text, record) => (
+            <Link to={`/exam/topicList/${record._id}`}>{text}</Link>
+          )}/>
+          <Column title="开始时间" width={228} dataIndex="startTime" key="startTime" render={(text, record) => (
+            <span>
+              {moment(new Date(text)).format('YYYY年MM月DD日 HH:mm:ss')}
+            </span>
+          )}/>
+          <Column title="结束时间" width={228} dataIndex="finishTime" key="finishTime" render={(text, record) => (
+            <span>
+              {moment(new Date(text)).format('YYYY年MM月DD日 HH:mm:ss')}
+            </span>
+          )}/>
+          <Column title="考试状态" width={109} dataIndex="status" key="status" render={(text, record) => {
+            const status = examStatus(record.startTime, record.finishTime);
+            return (
+              <Tag color={badgeColor[status] || ''}>{status}</Tag>
+            );
+          }}/>
+          <Column title="教师" width={82} dataIndex="teacher" key="teacher" render={(text, record) => (
+            <span>
+              {record.user[0].trueName}
+            </span>
+          )}/>
+          <Column title="学校" width={192} dataIndex="school" key="school" render={(text, record) => (
+            <span>
+              {record.user[0].school}
+            </span>
+          )}/>
+        </Table>
+      </div>
+    );
+  }
 }
 
-export default examList
+export default ExamList;

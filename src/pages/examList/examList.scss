@@ -1,48 +1,22 @@
-.exam-list{
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  .title{
-    height: 70px;
-    line-height: 70px;
-    font-size: 25px;
-    text-align: center;
-    font-weight: bold;
+.exam-list {
+  .title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
   }
-  .search-page{
-    width: 80%;
+
+  .status {
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .search {
     height: 50px;
     display: flex;
-    .search-bar{
-      flex: 1 1 50%;
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      .ant-input-search{
-        width: 200px;
-      }
-    }
-    .page-bar{
-      flex:1 1 50%;
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-    }
-  }
-  .ant-table-wrapper{
-    margin: 30px 0;
-    .ant-table-align-center{
-      padding:10px 0;
-    }
-    .ant-table-tbody{
-      .name{
-        color: cornflowerblue;
-      }
-    }
-    td{
-      cursor: pointer;
-      padding:10px 0;
-    }
+    justify-content: flex-start;
+    align-items: center;
   }
 }

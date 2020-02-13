@@ -1,103 +1,129 @@
-import React from 'react'
-import './login.scss'
-import {Form,Input,Icon,Button,Modal} from "antd";
-import ajaxService from "../../utils/ajaxService";
-import {getAllTime, getExamStatus} from "../../utils/commonUtil";
+import React from 'react';
+import exam from '@/api/exam';
+import { Badge, Form, Icon, Input, Button } from 'antd';
+import { badgeColor, examStatus } from '@/common/common';
+import account from '@/api/account';
+import { JSEncrypt } from 'jsencrypt';
+import router from 'umi/router';
+import './login.scss';
+import moment from 'moment';
+import store from '@/store';
 
-const FormItem = Form.Item
+class Login extends React.Component {
+  constructor(props) {
+    super(props);
+    const { match: { params } } = props;
+    this.state = {
+      examId: params.examId,
+      examInfo: {},
+      publicKey: '',
+    };
+  }
 
-class login extends React.Component {
-    constructor(props) {
-        super(props)
-        const {id} = props.match.params || {};
-        this.state = {
-            examId:id,
-            examStatus: {}
-        }
-    }
+  componentDidMount() {
+    this.getExamInfo();
+    this.getPublicKey();
+  }
 
-    componentDidMount() {
-        this.getExamStatus()
+  getExamInfo = async () => {
+    try {
+      const { examId } = this.state;
+      const action = {
+        type: 'user',
+        examId: examId,
+      };
+      store.dispatch(action);
+      const { data } = await exam.getExamInfo({ examId });
+      this.setState({
+        examInfo: data,
+      });
+    } catch (e) {
+      console.error(e);
     }
-    handleSubmit=(e)=>{
-        e.preventDefault()
-        this.props.form.validateFields((err,values)=>{
-            if (!err){
-                if (this.state.examStatus.isTest===1&&getExamStatus(this.state.examStatus.start,this.state.examStatus.finish)==='starting'){
-                    Modal.confirm({
-                        title:'Please confirm',
-                        content:'You will now take an exam and will not be able to change your computer after logging in.',
-                        onOk:()=>{
-                            this.loginExam(values)
-                        }
-                    })
-                }else{
-                    this.loginExam(values)
-                }
-            }
-        })
-    }
-    loginExam=(values)=>{
-        let {examId}=this.state
-        let {username,password}=values
-        ajaxService.examLogin({examId,username,password}).then(res=>{
-            if (res.code===1){
-                this.props.history.push('/exam/examInfo/'+this.state.examId)
-            }
-        })
-    }
-    getExamStatus = () => {
-        ajaxService.getExamStatus({examId: this.state.examId}).then(res => {
-            if (res.code === 1) {
-                this.setState({
-                    examStatus: res.data
-                })
-            }
-        }).catch(res => {
-            this.props.history.replace('/examList')
-        })
-    }
+  }
 
-    render() {
-        const {examStatus} = this.state
-        const { getFieldDecorator } = this.props.form;
-        return (
-            <div className="login">
-                <h1>{examStatus.name}</h1>
-                <div
-                    className="exam-status">{`holder:${examStatus.holder} | start time:${getAllTime(examStatus.start)} | finish time:${getAllTime(examStatus.finish)} | type:${examStatus.isTest ? 'exam' : 'exercise'} | status:`}
-                    <span
-                        className={getExamStatus(examStatus.start, examStatus.finish)}>{getExamStatus(examStatus.start, examStatus.finish)}</span>
-                </div>
-                <Form onSubmit={this.handleSubmit}>
-                    <FormItem>
-                        {getFieldDecorator('username', {
-                            rules: [{ required: true, message: 'Please input your username!' }],
-                        })(
-                            <Input
-                                prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                                placeholder="Username"
-                            />,
-                        )}
-                    </FormItem>
-                    <FormItem>
-                        {getFieldDecorator('password', {
-                            rules: [{ required: true, message: 'Please input your Password!' }],
-                        })(
-                            <Input
-                                prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                                type="password"
-                                placeholder="Password"
-                            />,
-                        )}
-                    </FormItem>
-                    <FormItem>
-                        <Button  type="primary" htmlType="submit" className="login-form-button">login</Button>
-                    </FormItem>
-                </Form>
-            </div>
-        )
+  getPublicKey = async () => {
+    try {
+      const { data } = await account.getPublicKey();
+      this.setState({
+        publicKey: data,
+      });
+    } catch (e) {
+      console.error(e);
     }
+  };
+
+  handleSubmit = e => {
+    e.preventDefault();
+    this.props.form.validateFields((err, values) => {
+      if (!err) {
+        this.login(values);
+      }
+    });
+  };
+
+  login = async (val) => {
+    try {
+      const { publicKey, examId } = this.state;
+      const encrypt = new JSEncrypt();
+      encrypt.setPublicKey(publicKey);
+      val.password = encrypt.encrypt(val.password);
+      await account.login({
+        ...val,
+        examId,
+      });
+      router.push('/exam/topicList/' + examId);
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  render() {
+    const { examInfo } = this.state;
+    const { getFieldDecorator } = this.props.form;
+    const status = examInfo ? examStatus(examInfo.startTime, examInfo.finishTime) : '';
+    return (
+      <div className="login">
+        <Badge count={status} style={{ backgroundColor: badgeColor[status] || 'red' }}>
+          <h1 className="examName">{examInfo ? examInfo.examName : ''}</h1>
+        </Badge>
+        <div className="status">
+          <span>开始时间：{examInfo ? moment(examInfo.startTime).format('YYYY年MM月DD日 HH:mm:ss') : ''}</span>
+          <span>结束时间：{examInfo ? moment(examInfo.finishTime).format('YYYY年MM月DD日 HH:mm:ss') : ''}</span>
+        </div>
+        <Form onSubmit={this.handleSubmit} className="login-form">
+          <Form.Item>
+            {getFieldDecorator('username', {
+              rules: [{ required: true, message: '请输入用户名' }],
+            })(
+              <Input
+                prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }}/>}
+                placeholder="用户名"
+              />,
+            )}
+          </Form.Item>
+          <Form.Item>
+            {getFieldDecorator('password', {
+              rules: [{ required: true, message: '请输入密码' }],
+            })(
+              <Input
+                prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }}/>}
+                type="password"
+                placeholder="密码"
+              />,
+            )}
+          </Form.Item>
+          <Form.Item>
+            <Button type="primary" htmlType="submit" className="login-form-button">
+              登录
+            </Button>
+          </Form.Item>
+        </Form>
+      </div>
+    );
+  }
 }
-const WrappedHorizontalLoginForm = Form.create({ name: 'horizontal_login' })(login)
-export default WrappedHorizontalLoginForm
+
+const WrappedNormalLoginForm = Form.create({ name: 'normal_login' })(Login);
+
+export default WrappedNormalLoginForm;
