@@ -83,12 +83,23 @@ class TFTopic extends React.Component {
   };
 
   getTopicCard = () => {
-    const { topicData, disabled } = this.state;
+    const { topicData, disabled, answer } = this.state;
     const topicEl = [];
     for (const index in topicData) {
       const item = topicData[index];
+      let score = '';
+      const i = answer.map(it => it.topicId).indexOf(item._id);
+      if (item.grade) {
+        score = answer[i] && answer[i].result ?  + '2分' : '0分';
+      }
       topicEl.push(
-        <Card style={{ marginBottom: 15 }} size="small" title={`第${parseInt(index) + 1}题 (2分)`} key={item._id}
+        <Card style={{ marginBottom: 15 }} size="small" key={item._id}
+              title={<section><span
+                className="ant-card-head-title"
+                style={{ marginRight: 20, padding: 0 }}>{`第${parseInt(index) + 1}题 (2分)`}</span>
+                <span style={{ color: 'red', padding: 0 }}
+                      className="ant-card-head-title">{score ? score : ''}</span>
+              </section>}
               extra={<RadioGroup disabled={disabled} value={this.getRadioValue(item._id)}
                                  onChange={(e) => this.radioChange(e.target.value, item._id)}>
                 <Radio value={true}>正确</Radio>

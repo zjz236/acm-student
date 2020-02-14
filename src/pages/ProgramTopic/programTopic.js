@@ -81,14 +81,18 @@ class ProgramTopic extends React.Component {
     const topicEl = [];
     for (const index in topicData) {
       const item = topicData[index];
+      let score = '';
       const i = answer.map(it => it.topicId).indexOf(item._id);
+      if (item.grade) {
+        score = answer[i] ? answer[i].score + '分' : '0分';
+      }
       topicEl.push(
         <Card style={{ marginBottom: 15 }} size="small"
               title={<section><span
                 className="ant-card-head-title"
                 style={{ marginRight: 20 }}>{`第${parseInt(index) + 1}题 (${item.testCount * 10}分)：${item.title}`}</span>
                 <span style={{ color: 'red' }}
-                      className="ant-card-head-title">{answer[i].score + 1 ? answer[i].score + '分' : ''}</span>
+                      className="ant-card-head-title">{score}</span>
               </section>}
               key={item._id}
               extra={<section><Button style={{ margin: '0 10px' }} type="primary"

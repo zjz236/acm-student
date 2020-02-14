@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c86034ea-7465-4fbe-a35e-27d8d202e399" name="Default Changelist" comment="">
+    <list default="true" id="641be80c-1942-43f5-bc47-aa6ad5e9e1df" name="Default Changelist" comment="学生">
+      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/GapTopic/gapTopic.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/GapTopic/gapTopic.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/ProgramTopic/programTopic.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/ProgramTopic/programTopic.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/SelectTopic/selectTopic.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/SelectTopic/selectTopic.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/TFTopic/tfTopic.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/TFTopic/tfTopic.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -17,14 +22,51 @@
       </list>
     </option>
   </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>webpack</find>
+      <find>4.39.0</find>
+      <find>4.41.0</find>
+      <find>4.39</find>
+      <find>web</find>
+      <find>css</find>
+      <find>sass</find>
+      <find>3000</find>
+      <find>error</find>
+      <find>cookie-universal-nuxt</find>
+      <find>data</find>
+      <find>proxy</find>
+      <find>route</find>
+      <find>console</find>
+      <find>repla</find>
+      <find>arguments</find>
+      <find>home</find>
+      <find>homepage</find>
+      <find>devS</find>
+    </findStrings>
+  </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectId" id="1XHxXDKyMsdId0ElVJyJFvNG5GR" />
+  <component name="JsFlowSettings">
+    <service-enabled>true</service-enabled>
+    <exe-path />
+    <other-services-enabled>true</other-services-enabled>
+    <auto-save>true</auto-save>
+  </component>
+  <component name="ProjectId" id="1XkEWGlemdcM62a3sH2CeJad2xO" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.path.for.package.standard" value="project" />
@@ -32,22 +74,21 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.standard" value="" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="nodejs_package_manager_path" value="npm" />
-    <property name="prettierjs.PrettierConfiguration.Package" value="$PROJECT_DIR$/node_modules/prettier" />
-    <property name="settings.editor.selected.configurable" value="watcher.settings" />
-    <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
+    <property name="nodejs_interpreter_path" value="node" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="nodejs_package_manager_path" value="yarn" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/pages" />
-      <recent name="$PROJECT_DIR$/src/layouts" />
-      <recent name="$PROJECT_DIR$/src/assets/svg" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/utils" />
+      <recent name="$PROJECT_DIR$/src/assets/images" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/public" />
+      <recent name="$PROJECT_DIR$/src/utils" />
       <recent name="$PROJECT_DIR$/src/pages" />
-      <recent name="$PROJECT_DIR$/src/assets" />
-      <recent name="$PROJECT_DIR$/src/common" />
-      <recent name="$PROJECT_DIR$/src/api" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -62,34 +103,160 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
-    <configuration name="start" type="js.build_tools.npm" nameIsGenerated="true">
+  <component name="RunManager" selected="npm.npm start">
+    <configuration name="Debug Application" type="JavascriptDebugType" uri="http://localhost:3000">
+      <method v="2" />
+    </configuration>
+    <configuration name="eject" type="js.build_tools.npm" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="eject" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="npm start" type="js.build_tools.npm">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
       <scripts>
         <script value="start" />
       </scripts>
       <node-interpreter value="project" />
+      <package-manager value="npm" />
       <envs />
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="JavaScript Debug.Debug Application" />
+      <item itemvalue="npm.npm start" />
+      <item itemvalue="npm.eject" />
+    </list>
   </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="c86034ea-7465-4fbe-a35e-27d8d202e399" name="Default Changelist" comment="" />
-      <created>1580716858511</created>
+      <changelist id="641be80c-1942-43f5-bc47-aa6ad5e9e1df" name="Default Changelist" comment="" />
+      <created>1570163794186</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1580716858511</updated>
-      <workItem from="1580716859648" duration="1371000" />
-      <workItem from="1581153089160" duration="22902000" />
-      <workItem from="1581300944563" duration="64781000" />
-      <workItem from="1581558883015" duration="9914000" />
+      <updated>1570163794186</updated>
+      <workItem from="1570163795335" duration="18667000" />
+      <workItem from="1570240309953" duration="1992000" />
+      <workItem from="1570327589304" duration="51025000" />
+      <workItem from="1570496810206" duration="25174000" />
+      <workItem from="1570537368245" duration="8034000" />
+      <workItem from="1570583100354" duration="3772000" />
+      <workItem from="1570624990885" duration="2772000" />
+      <workItem from="1570669762596" duration="3860000" />
+      <workItem from="1570712059959" duration="1015000" />
+      <workItem from="1570715893297" duration="8000" />
+      <workItem from="1570756888870" duration="1895000" />
+      <workItem from="1570759466858" duration="2625000" />
+      <workItem from="1570842537438" duration="1243000" />
+      <workItem from="1570948305459" duration="3375000" />
+      <workItem from="1571101907802" duration="1795000" />
+      <workItem from="1571145852096" duration="1479000" />
+      <workItem from="1571187229918" duration="2345000" />
+      <workItem from="1571273744220" duration="599000" />
+      <workItem from="1571275905783" duration="686000" />
+      <workItem from="1571455129229" duration="1841000" />
+      <workItem from="1571490418165" duration="598000" />
+      <workItem from="1571552395433" duration="962000" />
+      <workItem from="1571619756884" duration="721000" />
+      <workItem from="1571624278933" duration="687000" />
+      <workItem from="1571707114070" duration="597000" />
+      <workItem from="1571793058700" duration="1197000" />
+      <workItem from="1571879581070" duration="1231000" />
+      <workItem from="1571965488679" duration="1924000" />
+      <workItem from="1572065810013" duration="20336000" />
+      <workItem from="1572153933881" duration="806000" />
+      <workItem from="1572181387147" duration="605000" />
+      <workItem from="1572589487965" duration="675000" />
+      <workItem from="1572755942000" duration="2272000" />
+      <workItem from="1573286602919" duration="599000" />
+      <workItem from="1573293516622" duration="597000" />
+      <workItem from="1573350830498" duration="1219000" />
+      <workItem from="1573353491451" duration="600000" />
+      <workItem from="1581581808779" duration="3785000" />
     </task>
+    <task id="LOCAL-00001" summary="学生">
+      <created>1570713424540</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1570713424540</updated>
+    </task>
+    <task id="LOCAL-00002" summary="学生">
+      <created>1571467233529</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1571467233529</updated>
+    </task>
+    <task id="LOCAL-00003" summary="学生">
+      <created>1572081719396</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1572081719396</updated>
+    </task>
+    <task id="LOCAL-00004" summary="学生">
+      <created>1572086089655</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1572086089655</updated>
+    </task>
+    <task id="LOCAL-00005" summary="学生">
+      <created>1572086340684</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1572086340684</updated>
+    </task>
+    <task id="LOCAL-00006" summary="学生">
+      <created>1572086677247</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1572086677247</updated>
+    </task>
+    <task id="LOCAL-00007" summary="学生">
+      <created>1572087639296</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1572087639296</updated>
+    </task>
+    <task id="LOCAL-00008" summary="学生">
+      <created>1572094072314</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1572094072314</updated>
+    </task>
+    <task id="LOCAL-00009" summary="学生">
+      <created>1572099062556</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1572099062556</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -104,5 +271,24 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="学生" />
+    <option name="LAST_COMMIT_MESSAGE" value="学生" />
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ScopeChooserConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.19865772" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
   </component>
 </project>
