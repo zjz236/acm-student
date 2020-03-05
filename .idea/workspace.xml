@@ -2,12 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="641be80c-1942-43f5-bc47-aa6ad5e9e1df" name="Default Changelist" comment="学生">
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/GapTopic/gapTopic.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/GapTopic/gapTopic.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/ProgramTopic/programTopic.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/ProgramTopic/programTopic.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/SelectTopic/selectTopic.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/SelectTopic/selectTopic.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/TFTopic/tfTopic.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/TFTopic/tfTopic.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.umirc.js" beforeDir="false" afterPath="$PROJECT_DIR$/.umirc.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/account.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/account.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/ajaxUtil.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/ajaxUtil.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/exam.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/exam.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/ide.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/ide.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/operation.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/operation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/rank.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/rank.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/topic.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/topic.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -21,29 +24,6 @@
         <option value="JavaScript File" />
       </list>
     </option>
-  </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>webpack</find>
-      <find>4.39.0</find>
-      <find>4.41.0</find>
-      <find>4.39</find>
-      <find>web</find>
-      <find>css</find>
-      <find>sass</find>
-      <find>3000</find>
-      <find>error</find>
-      <find>cookie-universal-nuxt</find>
-      <find>data</find>
-      <find>proxy</find>
-      <find>route</find>
-      <find>console</find>
-      <find>repla</find>
-      <find>arguments</find>
-      <find>home</find>
-      <find>homepage</find>
-      <find>devS</find>
-    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -182,6 +162,16 @@
       <workItem from="1573350830498" duration="1219000" />
       <workItem from="1573353491451" duration="600000" />
       <workItem from="1581581808779" duration="3785000" />
+      <workItem from="1581938689844" duration="2600000" />
+      <workItem from="1581946202423" duration="627000" />
+      <workItem from="1581948919094" duration="4831000" />
+      <workItem from="1582029326275" duration="3482000" />
+      <workItem from="1582072473544" duration="1884000" />
+      <workItem from="1582117398946" duration="9212000" />
+      <workItem from="1582336560998" duration="14000" />
+      <workItem from="1582508184244" duration="1155000" />
+      <workItem from="1582764522613" duration="2837000" />
+      <workItem from="1583150804952" duration="2230000" />
     </task>
     <task id="LOCAL-00001" summary="学生">
       <created>1570713424540</created>
@@ -266,7 +256,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>

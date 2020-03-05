@@ -26,6 +26,13 @@ export default {
   cssLoaderOptions: {
     localIdentName: '[local]',
   },
+  proxy: {
+    '/student': {
+      target: 'http://127.0.0.1:1236',
+      pathRewrite: {'': ''},
+      changeOrigin: true
+    }
+  },
   plugins: [
     // ref: https://umijs.org/plugin/umi-plugin-react.html
     [
