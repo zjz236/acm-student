@@ -1,6 +1,7 @@
 // ref: https://umijs.org/config/
 export default {
   treeShaking: true,
+  base: '/stu',
   routes: [
     {
       path: '/',
