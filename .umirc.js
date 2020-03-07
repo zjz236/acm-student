@@ -2,7 +2,9 @@
 export default {
   treeShaking: true,
   base: '/stu',
-  publicPath: 'http://39.97.112.236/stu/',
+  publicPath: './',
+  history: 'hash',
+  hash: true,
   routes: [
     {
       path: '/',
