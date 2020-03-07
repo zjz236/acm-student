@@ -29,7 +29,12 @@ export default {
   proxy: {
     '/student': {
       target: 'http://127.0.0.1:1236',
-      pathRewrite: {'/student/': '/', '/oj/': '/'},
+      pathRewrite: {'/student/': '/'},
+      changeOrigin: true
+    },
+    '/oj' : {
+      target: 'http://127.0.0.1:7001',
+      pathRewrite: {'/oj/': '/'},
       changeOrigin: true
     }
   },

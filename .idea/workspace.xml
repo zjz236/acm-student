@@ -4,11 +4,6 @@
     <list default="true" id="641be80c-1942-43f5-bc47-aa6ad5e9e1df" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.umirc.js" beforeDir="false" afterPath="$PROJECT_DIR$/.umirc.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/ajaxUtil.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/ajaxUtil.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/GapTopic/gapTopic.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/GapTopic/gapTopic.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/ProgramTopic/programTopic.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/ProgramTopic/programTopic.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/SelectTopic/selectTopic.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/SelectTopic/selectTopic.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/TFTopic/tfTopic.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/TFTopic/tfTopic.scss" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -169,7 +164,7 @@
       <workItem from="1582336560998" duration="14000" />
       <workItem from="1582508184244" duration="1155000" />
       <workItem from="1582764522613" duration="2837000" />
-      <workItem from="1583150804952" duration="3194000" />
+      <workItem from="1583150804952" duration="3529000" />
     </task>
     <task id="LOCAL-00001" summary="学生">
       <created>1570713424540</created>
@@ -241,7 +236,14 @@
       <option name="project" value="LOCAL" />
       <updated>1583418118751</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="修改代理">
+      <created>1583561673614</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1583561673614</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TodoView">
@@ -272,7 +274,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="学生" />
     <MESSAGE value="修改路由" />
-    <option name="LAST_COMMIT_MESSAGE" value="修改路由" />
+    <MESSAGE value="修改代理" />
+    <option name="LAST_COMMIT_MESSAGE" value="修改代理" />
   </component>
   <component name="masterDetails">
     <states>
