@@ -2,7 +2,7 @@
 export default {
   treeShaking: true,
   base: '/stu/',
-  publicPath: './',
+  publicPath: '/stu/',
   routes: [
     {
       path: '/',
