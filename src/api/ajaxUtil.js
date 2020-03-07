@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { setCookie, getCookie } from '@/common/cookieUtil';
+import { setCookie } from '@/common/cookieUtil';
 // import { baseUrl } from '@/common/common';
 
 const timeout = 30 * 1000;
