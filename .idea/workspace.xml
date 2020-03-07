@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="641be80c-1942-43f5-bc47-aa6ad5e9e1df" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.umirc.js" beforeDir="false" afterPath="$PROJECT_DIR$/.umirc.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -51,6 +52,7 @@
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="yarn" />
     <property name="settings.editor.selected.configurable" value="preferences.sourceCode" />
+    <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -163,7 +165,7 @@
       <workItem from="1582336560998" duration="14000" />
       <workItem from="1582508184244" duration="1155000" />
       <workItem from="1582764522613" duration="2837000" />
-      <workItem from="1583150804952" duration="7998000" />
+      <workItem from="1583150804952" duration="8937000" />
     </task>
     <task id="LOCAL-00001" summary="学生">
       <created>1570713424540</created>
@@ -319,7 +321,14 @@
       <option name="project" value="LOCAL" />
       <updated>1583588566606</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="修改配置">
+      <created>1583589033624</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1583589033624</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TodoView">

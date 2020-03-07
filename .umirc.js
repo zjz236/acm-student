@@ -3,8 +3,6 @@ export default {
   treeShaking: true,
   base: '/stu',
   publicPath: './',
-  history: 'hash',
-  hash: true,
   routes: [
     {
       path: '/',
