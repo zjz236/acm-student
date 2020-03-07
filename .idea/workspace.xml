@@ -165,7 +165,7 @@
       <workItem from="1582336560998" duration="14000" />
       <workItem from="1582508184244" duration="1155000" />
       <workItem from="1582764522613" duration="2837000" />
-      <workItem from="1583150804952" duration="8937000" />
+      <workItem from="1583150804952" duration="9623000" />
     </task>
     <task id="LOCAL-00001" summary="学生">
       <created>1570713424540</created>
@@ -328,7 +328,14 @@
       <option name="project" value="LOCAL" />
       <updated>1583589033624</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="修改配置">
+      <created>1583590463470</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1583590463470</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TodoView">
