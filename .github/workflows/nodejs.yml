@@ -1,0 +1,45 @@
+# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: Node.js CI
+
+on:
+  push:
+    branches: v1.2.0_毕设
+
+jobs:
+  build:
+
+    runs-on: ubuntu-16.04
+
+    steps:
+      - uses: actions/checkout@v1
+        with:
+          fetch-depth: 1
+
+      - name: Use Node.js 12.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+
+      - name: Checkout # 此步骤（step）的名字
+        run: git checkout -b v1.2.0_毕设 origin/v1.2.0_毕设
+
+      - name: Build Project # 此步骤（step）的名字
+        run: npm install && npm run build
+
+      - name: List output files
+        run: ls -a dist # 显示生成的目录文件
+
+      # step2: 将源码复制到服务器 #坑
+      - name: Deploy to Server
+        uses: easingthemes/ssh-deploy@v2.1.2
+        env:
+          # 这个地方的用法会在下面解释，简单的说就是一个变量
+          # 为了安全，被写在一个其他的地方
+          SSH_PRIVATE_KEY: ${{ secrets.TOKEN }}
+          REMOTE_HOST: ${{ secrets.HOST }}
+          REMOTE_USER: ${{ secrets.USER }}
+          SOURCE: 'dist/'
+          TARGET: '/usr/local/nginx/html/stu/'
+          ARGS: '-avzr --delete'

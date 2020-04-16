@@ -90,6 +90,7 @@ class UserModify extends React.Component {
       await account.userPasswordModify({
         ...val,
         examId,
+        publicKey
       });
       message.success('修改成功')
     } catch (e) {

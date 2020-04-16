@@ -71,6 +71,7 @@ class Login extends React.Component {
       await account.login({
         ...val,
         examId,
+        publicKey
       });
       router.push('/exam/topicList/' + examId);
     } catch (e) {

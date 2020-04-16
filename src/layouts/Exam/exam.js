@@ -1,5 +1,5 @@
 import React from 'react';
-import { Layout, Menu, Icon, BackTop, Modal, Button, Spin, Divider, Select } from 'antd';
+import { Layout, Menu, Icon, BackTop, Modal, Button, Spin, Divider, Select, Carousel, Alert } from 'antd';
 import './exam.scss';
 import router from 'umi/router';
 import { menuKeys, examMenuPath, languageMode } from '@/common/common';
@@ -7,6 +7,7 @@ import store from '@/store';
 import AceEditor from 'react-ace';
 import ide from '@/api/ide';
 import { delCookie } from '@/common/cookieUtil';
+import exam from '@/api/exam';
 
 const { Header, Footer, Content } = Layout;
 const { Item: MenuItem } = Menu;
@@ -17,6 +18,11 @@ let timer = null;
 class Exam extends React.Component {
   constructor(props, context) {
     super(props, context);
+    let examId = '';
+    if (this.haveMenu(props.location.pathname)) {
+      const index = props.location.pathname.lastIndexOf('/');
+      examId = props.location.pathname.substr(index + 1, props.location.pathname.length);
+    }
     this.state = {
       defaultSelectedKeys: '',
       codeVisible: false,
@@ -24,6 +30,8 @@ class Exam extends React.Component {
       inputData: '',
       outputData: '',
       code: '',
+      examId,
+      notice: [],
       language: 'c',
     };
   }
@@ -57,6 +65,21 @@ class Exam extends React.Component {
           router.push(item + '/' + examId);
         }
       }
+    }
+  };
+  getExamNotice = async () => {
+    let examId = '';
+    if (this.haveMenu(this.props.location.pathname)) {
+      const index = this.props.location.pathname.lastIndexOf('/');
+      examId = this.props.location.pathname.substr(index + 1, this.props.location.pathname.length);
+    }
+    try {
+      const { data } = await exam.getExamNotice({ examId });
+      this.setState({
+        notice: data,
+      });
+    } catch (e) {
+      console.error(e);
     }
   };
 
@@ -127,6 +150,21 @@ class Exam extends React.Component {
       }
     }
     return false;
+  };
+
+  componentDidUpdate() {
+    this.haveMenu(this.props.location.pathname) && this.getExamNotice();
+  }
+
+  getNotice = () => {
+    const el = [];
+    const { notice } = this.state;
+    for (const item of notice) {
+      el.push(
+        <Alert key={item._id} message={item.content} type="info"/>,
+      );
+    }
+    return el;
   };
 
   render() {
@@ -220,13 +258,19 @@ class Exam extends React.Component {
             </Spin>
           </Modal>
           <div style={{ background: '#fff', padding: 24, minHeight: 280 }}>
+            {this.haveMenu(location.pathname) && (
+              <Carousel style={{ marginBottom: 15 }} autoplay dots={false}>
+                {this.getNotice()}
+              </Carousel>
+            )}
             {children}
           </div>
         </Content>
         <Footer style={{ textAlign: 'center' }}>技术支持：计算机162 <a target="_blank" rel="noopener noreferrer"
-                                                               href="https://zjz236.github.io/">朱锦泽</a>, 黄梦霞</Footer>
+                                                               href="https://zjz236.github.io/">朱锦泽</a>, 黄梦霞</Footer>;
       </Layout>
-    );
+    )
+      ;
   }
 
 }
