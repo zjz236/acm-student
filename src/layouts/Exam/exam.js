@@ -39,8 +39,10 @@ class Exam extends React.Component {
   componentDidMount() {
     const { location } = this.props;
     this.setDefaultKey(location);
+    this.haveMenu(this.props.location.pathname) && this.getExamNotice();
     this.props.history.listen(val => {
       this.setDefaultKey(val);
+      this.haveMenu(this.props.location.pathname) && this.getExamNotice();
     });
   }
 
@@ -152,9 +154,9 @@ class Exam extends React.Component {
     return false;
   };
 
-  componentDidUpdate() {
-    this.haveMenu(this.props.location.pathname) && this.getExamNotice();
-  }
+  // componentDidUpdate() {
+  //   this.haveMenu(this.props.location.pathname) && this.getExamNotice();
+  // }
 
   getNotice = () => {
     const el = [];

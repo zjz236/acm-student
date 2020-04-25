@@ -85,6 +85,8 @@ class ProgramTopic extends React.Component {
       const i = answer.map(it => it.topicId).indexOf(item._id);
       if (item.grade) {
         score = answer[i] ? answer[i].score + '分' : '0分';
+      } else {
+        score = answer[i] ? answer[i].score + '分' : '';
       }
       topicEl.push(
         <Card style={{ marginBottom: 15 }} size="small"
@@ -140,11 +142,11 @@ class ProgramTopic extends React.Component {
         answer,
       });
       const status = data.status.map(item => item.status);
-      console.log(status);
-      if (status.indexOf('Queuing') >= 0 || status.indexOf('Running') >= 0) {
+      if (status.includes('Queuing')|| status.includes('Running')) {
         statusTimer = setTimeout(() => this.getProgramStatus(), 500);
       } else {
         clearTimeout(statusTimer);
+        this.getTopicInfo();
       }
     } catch (e) {
       console.error(e);

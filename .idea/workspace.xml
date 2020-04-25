@@ -2,12 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="641be80c-1942-43f5-bc47-aa6ad5e9e1df" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.github/workflows/nodejs.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/exam.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/exam.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/layouts/Exam/exam.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/Exam/exam.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Login/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Login/login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/UserModify/userModify.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/UserModify/userModify.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/ProgramTopic/programTopic.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/ProgramTopic/programTopic.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -59,14 +56,15 @@
     <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/utils" />
-      <recent name="$PROJECT_DIR$/src/assets/images" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/public" />
       <recent name="$PROJECT_DIR$/src/utils" />
       <recent name="$PROJECT_DIR$/src/pages" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/src/utils" />
+      <recent name="$PROJECT_DIR$/src/assets/images" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -177,7 +175,12 @@
       <workItem from="1585752674741" duration="153000" />
       <workItem from="1585925156425" duration="603000" />
       <workItem from="1586000098625" duration="1197000" />
-      <workItem from="1586614933954" duration="711000" />
+      <workItem from="1586614933954" duration="3707000" />
+      <workItem from="1587193401465" duration="525000" />
+      <workItem from="1587194451249" duration="575000" />
+      <workItem from="1587276713635" duration="1000" />
+      <workItem from="1587280019300" duration="1432000" />
+      <workItem from="1587298966951" duration="2118000" />
     </task>
     <task id="LOCAL-00001" summary="学生">
       <created>1570713424540</created>
@@ -368,7 +371,14 @@
       <option name="project" value="LOCAL" />
       <updated>1583592431625</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="修改yml">
+      <created>1587043493859</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1587043493859</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TodoView">
@@ -402,7 +412,8 @@
     <MESSAGE value="修改文件夹名" />
     <MESSAGE value="修改路由" />
     <MESSAGE value="修改配置" />
-    <option name="LAST_COMMIT_MESSAGE" value="修改配置" />
+    <MESSAGE value="修改yml" />
+    <option name="LAST_COMMIT_MESSAGE" value="修改yml" />
   </component>
   <component name="masterDetails">
     <states>
