@@ -22,7 +22,6 @@ class Login extends React.Component {
 
   componentDidMount() {
     this.getExamInfo();
-    this.getPublicKey();
   }
 
   getExamInfo = async () => {
@@ -42,12 +41,13 @@ class Login extends React.Component {
     }
   }
 
-  getPublicKey = async () => {
+  getPublicKey = async (value) => {
     try {
       const { data } = await account.getPublicKey();
-      this.setState({
+      await this.setState({
         publicKey: data,
       });
+      this.login(value)
     } catch (e) {
       console.error(e);
     }
@@ -57,7 +57,7 @@ class Login extends React.Component {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        this.login(values);
+        this.getPublicKey(values);
       }
     });
   };

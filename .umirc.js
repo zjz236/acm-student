@@ -13,7 +13,7 @@ export default {
       component: '../layouts/Exam/exam',
       routes: [
         { path: '/exam', redirect: 'examList' },
-        { path: '/exam/examList', component: '../pages/ExamList/examList' },
+        { path: '/exam/examList', component: '../pages/ExamList/examList', _title: '考试列表', _title_default: '考试列表' },
         { path: '/exam/login/:examId', component: '../pages/Login/login' },
         { path: '/exam/topicList/:examId', component: '../pages/TopicList/topicList' },
         { path: '/exam/tfTopic/:examId', component: '../pages/TFTopic/tfTopic' },
@@ -47,7 +47,7 @@ export default {
       {
         antd: true,
         dva: false,
-        dynamicImport: false,
+        dynamicImport: true,
         title: 'acm-student',
         dll: false,
         routes: {

@@ -22,12 +22,13 @@ class UserModify extends React.Component {
     this.getPublicKey();
   }
 
-  getPublicKey = async () => {
+  getPublicKey = async (value) => {
     try {
       const { data } = await account.getPublicKey();
-      this.setState({
+      await this.setState({
         publicKey: data,
       });
+      this.userPasswordModify(value)
     } catch (e) {
       console.error(e);
     }
@@ -75,7 +76,7 @@ class UserModify extends React.Component {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        this.userPasswordModify(values)
+        this.getPublicKey(values)
       }
     });
   };

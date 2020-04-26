@@ -8,7 +8,6 @@ import './home.scss';
 import ReactDOM from 'react-dom';
 import TweenOne from 'rc-tween-one';
 import PropTypes from 'prop-types';
-
 class Home extends React.Component {
   static propTypes = {
     image: PropTypes.string,
