@@ -360,7 +360,6 @@ class Exam extends React.Component {
           </a>
           , 黄梦霞
         </Footer>
-        ;
       </Layout>
     );
   }
