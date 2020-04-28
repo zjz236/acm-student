@@ -64,7 +64,7 @@ export default defineConfig({
         },
       ],
     },
-    { component: '@/components/404/404' },
+    { component: '@/pages/404' },
   ],
   antd: {},
   dynamicImport: {
