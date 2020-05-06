@@ -20,6 +20,7 @@ class Live2d extends React.Component {
       },
     };
   }
+
   componentDidMount() {
     this.initCat();
     history.listen(val => {
@@ -34,7 +35,9 @@ class Live2d extends React.Component {
       ? true
       : false;
     if (isMobile) {
-      this.isLoaded = false;
+      this.setState({
+        isLoaded: false,
+      });
       return console.log('mobile do not load model');
     }
 
