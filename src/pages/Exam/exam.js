@@ -12,6 +12,7 @@ import {
   Alert,
 } from 'antd';
 import './exam.less';
+import Live2d from '@/components/Live2d/live2d';
 import { history } from 'umi';
 import { menuKeys, examMenuPath, languageMode } from '@/common/common';
 import store from '@/store';
@@ -63,7 +64,7 @@ class Exam extends React.Component {
     const { location } = this.props;
     this.setDefaultKey(location);
     this.haveMenu(this.props.location.pathname) && this.getExamNotice();
-    this.props.history.listen(val => {
+    history.listen(val => {
       this.setDefaultKey(val);
       this.haveMenu(this.props.location.pathname) && this.getExamNotice();
     });
@@ -360,6 +361,7 @@ class Exam extends React.Component {
           </a>
           , 黄梦霞
         </Footer>
+        <Live2d></Live2d>
       </Layout>
     );
   }
