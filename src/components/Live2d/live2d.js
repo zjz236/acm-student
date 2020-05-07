@@ -9,10 +9,16 @@ class Live2d extends React.Component {
     this.state = {
       isLoaded: true,
       model: {
-        blackCat:
-          'https://cdn.jsdelivr.net/gh/QiShaoXuan/live2DModel@1.0.0/live2d-widget-model-koharu/assets/koharu.model.json',
-        whiteCat:
-          'https://cdn.jsdelivr.net/gh/QiShaoXuan/live2DModel@1.0.0/live2d-widget-model-haruto/assets/haruto.model.json',
+        nij:
+          'https://cdn.jsdelivr.net/gh/QiShaoXuan/live2DModel@1.0.0/live2d-widget-model-ni-j/assets/ni-j.model.json',
+        nico:
+          'https://cdn.jsdelivr.net/gh/QiShaoXuan/live2DModel@1.0.0/live2d-widget-model-nico/assets/nico.model.json',
+        nietzsche:
+          'https://cdn.jsdelivr.net/gh/QiShaoXuan/live2DModel@1.0.0/live2d-widget-model-nietzsche/assets/nietzsche.model.json',
+        nipsilon:
+          'https://cdn.jsdelivr.net/gh/QiShaoXuan/live2DModel@1.0.0/live2d-widget-model-nipsilon/assets/nipsilon.model.json',
+        nito:
+          'https://cdn.jsdelivr.net/gh/QiShaoXuan/live2DModel@1.0.0/live2d-widget-model-nito/assets/nito.model.json',
       },
       style: {
         width: 280,
@@ -52,14 +58,11 @@ class Live2d extends React.Component {
         height: ((150 / 1424) * document.body.clientWidth) / 0.8,
       },
     });
+    const random = Math.floor(Math.random() * 5);
+    const model = ['nij', 'nico', 'nietzsche', 'nipsilon', 'nito'];
 
     setTimeout(() => {
-      window.loadlive2d(
-        'module',
-        Math.random() > 0.5
-          ? this.state.model.blackCat
-          : this.state.model.whiteCat,
-      );
+      window.loadlive2d('module', this.state.model[model[random]]);
     });
   };
 
@@ -72,7 +75,7 @@ class Live2d extends React.Component {
           width={style.width}
           height={style.height}
           className="live2d"
-        ></canvas>
+        />
       </div>
     );
   }
