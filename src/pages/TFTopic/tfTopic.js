@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './tfTopic.less';
 import { Card, Spin, Radio, Button, Modal, message } from 'antd';
 import exam from '@/api/exam';
@@ -8,63 +8,75 @@ import operation from '@/api/operation';
 import store from '@/store';
 
 const { Group: RadioGroup } = Radio;
-
-class TFTopic extends React.Component {
-  constructor(props) {
-    super(props);
-    const {
-      match: { params },
-    } = props;
-    this.state = {
-      examId: params.examId,
-      disabled: true,
-      topicData: [],
-      loading: false,
-      answer: [],
-    };
-  }
-
-  componentDidMount() {
-    this.getExamInfo();
-    this.getTopicInfo();
-  }
-
-  getExamInfo = async () => {
+const TFTopic = props => {
+  const {
+    match: { params },
+  } = props;
+  const [examId, setExamId] = useState(params.examId);
+  const [disabled, setDisabled] = useState(true);
+  const [topicData, setTopicData] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [answer, setAnswer] = useState([]);
+  const [examInfo, setExamInfo] = useState({});
+  useEffect(() => {
+    getExamInfo();
+    getTopicInfo();
+  }, []);
+  /**
+   * 获取考试信息
+   * @returns {Promise<void>}
+   */
+  const getExamInfo = async () => {
     try {
-      const { examId } = this.state;
       const action = {
         type: 'user',
         examId: examId,
       };
       store.dispatch(action);
       const { data } = await exam.getExamInfo({ examId });
-      this.setState({
-        examInfo: data,
-        disabled: examStatus(data.startTime, data.finishTime) !== 'starting',
-      });
+      setExamInfo(data);
+      setDisabled(examStatus(data.startTime, data.finishTime) !== 'starting');
     } catch (e) {
       console.error(e);
     }
   };
-
-  getTopicInfo = async () => {
-    await this.setState({
-      loading: true,
-    });
+  /**
+   * 获取题目信息
+   * @returns {Promise<void>}
+   */
+  const getTopicInfo = async () => {
+    await setLoading(true);
     try {
-      const { examId } = this.state;
       const {
         data: { topicData, answer },
       } = await topic.getTopicInfo({ examId, topicType: 'examTFTopic' });
-      this.setState({ topicData, answer, loading: false });
+      setTopicData(topicData);
+      setAnswer(answer);
+      setLoading(false);
     } catch (e) {
       console.error(e);
-      this.setState({ loading: false });
+      setLoading(false);
     }
   };
-
-  radioChange = (value, topicId) => {
-    const { answer } = this.state;
+  /**
+   * 获取选项
+   * @param topicId
+   * @returns {[]|[{topicId: *, answer: Array | *[]}]|null}
+   */
+  const getRadioValue = topicId => {
+    const index = answer.map(item => item.topicId).indexOf(topicId);
+    if (index >= 0) {
+      return answer[index].answer;
+    } else {
+      return null;
+    }
+  };
+  /**
+   * 修改选项
+   * @param value
+   * @param topicId
+   */
+  const radioChange = (value, topicId) => {
     const index = answer.map(item => item.topicId).indexOf(topicId);
     if (index >= 0) {
       answer[index].answer = value;
@@ -74,21 +86,13 @@ class TFTopic extends React.Component {
         answer: value,
       });
     }
-    this.setState({ answer });
+    setAnswer(answer.slice());
   };
-
-  getRadioValue = topicId => {
-    const { answer } = this.state;
-    const index = answer.map(item => item.topicId).indexOf(topicId);
-    if (index >= 0) {
-      return answer[index].answer;
-    } else {
-      return null;
-    }
-  };
-
-  getTopicCard = () => {
-    const { topicData, disabled, answer } = this.state;
+  /**
+   * 获取题目卡片dom
+   * @returns {[]}
+   */
+  const getTopicCard = () => {
     const topicEl = [];
     for (const index in topicData) {
       const item = topicData[index];
@@ -119,8 +123,8 @@ class TFTopic extends React.Component {
           extra={
             <RadioGroup
               disabled={disabled}
-              value={this.getRadioValue(item._id)}
-              onChange={e => this.radioChange(e.target.value, item._id)}
+              value={getRadioValue(item._id)}
+              onChange={e => radioChange(e.target.value, item._id)}
             >
               <Radio value={true}>正确</Radio>
               <Radio value={false}>错误</Radio>
@@ -133,22 +137,18 @@ class TFTopic extends React.Component {
     }
     return topicEl;
   };
-  submit = () => {
-    const { answer, topicData } = this.state;
+  const submit = () => {
     const surplus = topicData.length - answer.length;
-    if (!surplus) return this.topicSubmit();
+    if (!surplus) return topicSubmit();
     Modal.confirm({
       content: `您还差${surplus}题没填，确认是否提交？`,
       okText: '确认',
       cancelText: '取消',
-      onOk: () => this.topicSubmit(),
+      onOk: () => topicSubmit(),
     });
   };
-  topicSubmit = async () => {
-    const { answer, examId } = this.state;
-    await this.setState({
-      loading: true,
-    });
+  const topicSubmit = async () => {
+    await setLoading(true);
     try {
       await operation.topicSubmit({
         topicType: 'examTFAnswer',
@@ -159,28 +159,22 @@ class TFTopic extends React.Component {
     } catch (e) {
       console.error(e);
     } finally {
-      this.setState({
-        loading: false,
-      });
+      await setLoading(false);
     }
   };
-
-  render() {
-    const { loading, disabled } = this.state;
-    return (
-      <Spin spinning={loading}>
-        <div className="tf-topic">
-          <h1>判断题</h1>
-          {this.getTopicCard()}
-          <div className="submit">
-            <Button onClick={this.submit} disabled={disabled} type="primary">
-              提交
-            </Button>
-          </div>
+  return (
+    <Spin spinning={loading}>
+      <div className="tf-topic">
+        <h1>判断题</h1>
+        {getTopicCard()}
+        <div className="submit">
+          <Button onClick={submit} disabled={disabled} type="primary">
+            提交
+          </Button>
         </div>
-      </Spin>
-    );
-  }
-}
+      </div>
+    </Spin>
+  );
+};
 
 export default TFTopic;
