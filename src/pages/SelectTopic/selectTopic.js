@@ -12,7 +12,7 @@ const SelectTopic = props => {
   const {
     match: { params },
   } = props;
-  const [examId, setExamId] = useState(params.examId);
+  const [examId] = useState(params.examId);
   const [disabled, setDisabled] = useState(true);
   const [topicData, setTopicData] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -116,7 +116,10 @@ const SelectTopic = props => {
       const item = topicData[index];
       let score = '';
       const i = answer.map(it => it.topicId).indexOf(item._id);
-      if (item.grade) {
+      if (
+        item.grade &&
+        examStatus(examInfo.startTime, examInfo.finishTime) === 'ending'
+      ) {
         score = answer[i] && answer[i].result ? +'2分' : '0分';
       }
       topicEl.push(
@@ -154,6 +157,10 @@ const SelectTopic = props => {
     }
     return topicEl;
   };
+  /**
+   * 提交确认
+   * @returns {Promise<void>}
+   */
   const submit = () => {
     const surplus = topicData.length - answer.length;
     if (!surplus) return topicSubmit();
@@ -164,6 +171,10 @@ const SelectTopic = props => {
       onOk: () => topicSubmit(),
     });
   };
+  /**
+   * 题目提交
+   * @returns {Promise<void>}
+   */
   const topicSubmit = async () => {
     await setLoading(true);
     try {

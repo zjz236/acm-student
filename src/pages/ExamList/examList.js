@@ -15,7 +15,7 @@ const ExamList = () => {
   const [examData, setExamData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [pageNo, setPageNo] = useState(1);
-  const [pageSize, setPageSize] = useState(20);
+  const [pageSize] = useState(20);
   const [total, setTotal] = useState(0);
   const [searchType, setSearchType] = useState('teacher');
   const [searchText, setSearchText] = useState('');

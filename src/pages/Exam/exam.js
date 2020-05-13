@@ -65,7 +65,6 @@ const Exam = props => {
   const [inputData, setInputData] = useState('');
   const [outputData, setOutputData] = useState('');
   const [code, setCode] = useState('');
-  const [examId, setExamId] = useState(examIdText);
   const [notice, setNotice] = useState([]);
   const [language, setLanguage] = useState('c');
   useEffect(() => {

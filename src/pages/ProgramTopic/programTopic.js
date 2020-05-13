@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './programTopic.less';
 import { Card, Spin, Modal, message, Divider, Button, Table, Tag } from 'antd';
 import exam from '@/api/exam';
@@ -25,74 +25,59 @@ let statusTimer = null;
 
 const { Column } = Table;
 
-class ProgramTopic extends React.Component {
-  constructor(props) {
-    super(props);
-    const {
-      match: { params },
-    } = props;
-    this.state = {
-      examInfo: {},
-      examId: params.examId,
-      disabled: true,
-      topicData: [],
-      loading: false,
-      answer: [],
-      codeVisible: false,
-      inputData: '',
-      outputData: '',
-      codeLoading: false,
-      status: [],
-    };
-  }
-
-  componentDidMount() {
-    this.getExamInfo();
-    this.getTopicInfo();
-  }
-
-  getExamInfo = async () => {
+const ProgramTopic = props => {
+  const {
+    match: { params },
+  } = props;
+  const [examInfo, setExamInfo] = useState({});
+  const [examId] = useState(params.examId);
+  const [topicId, setTopicId] = useState('');
+  const [disabled, setDisabled] = useState(true);
+  const [topicData, setTopicData] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [answer, setAnswer] = useState([]);
+  const [codeVisible, setCodeVisible] = useState(false);
+  const [codeLoading, setCodeLoading] = useState(false);
+  const [status, setStatus] = useState([]);
+  const [inputData, setInputData] = useState('');
+  const [statusVisible, setStatusVisible] = useState(false);
+  const [outputData, setOutputData] = useState('');
+  useEffect(() => {
+    getTopicInfo();
+    getExamInfo();
+  }, []);
+  /**
+   * 获取考试信息
+   * @returns {Promise<void>}
+   */
+  const getExamInfo = async () => {
     try {
-      const { examId } = this.state;
       const action = {
         type: 'user',
         examId: examId,
       };
       store.dispatch(action);
       const { data } = await exam.getExamInfo({ examId });
-      this.setState({
-        examInfo: data,
-        disabled: examStatus(data.startTime, data.finishTime) !== 'starting',
-      });
+      setExamInfo(data);
+      setDisabled(examStatus(data.startTime, data.finishTime) !== 'starting');
     } catch (e) {
       console.error(e);
     }
   };
-
-  getTopicInfo = async () => {
-    await this.setState({
-      loading: true,
-    });
-    try {
-      const { examId } = this.state;
-      const {
-        data: { topicData, answer },
-      } = await topic.getTopicInfo({ examId, topicType: 'examProgramTopic' });
-      this.setState({ topicData, answer, loading: false });
-    } catch (e) {
-      console.error(e);
-      this.setState({ loading: false });
-    }
-  };
-
-  getTopicCard = () => {
-    const { topicData, answer } = this.state;
+  /**
+   * 获取卡片dom
+   * @returns {[]}
+   */
+  const getTopicCard = () => {
     const topicEl = [];
     for (const index in topicData) {
       const item = topicData[index];
       let score = '';
       const i = answer.map(it => it.topicId).indexOf(item._id);
-      if (item.grade) {
+      if (
+        item.grade &&
+        examStatus(examInfo.startTime, examInfo.finishTime) === 'ending'
+      ) {
         score = answer[i] ? answer[i].score + '分' : '0分';
       } else {
         score = answer[i] ? answer[i].score + '分' : '';
@@ -122,25 +107,23 @@ class ProgramTopic extends React.Component {
                 type="primary"
                 disabled={i < 0}
                 onClick={async () => {
-                  await this.setState({
-                    statusVisible: true,
-                    topicId: item._id,
-                  });
-                  this.getProgramStatus();
+                  setStatusVisible(true);
+                  setTopicId(item._id);
+                  useEffect(() => {
+                    getProgramStatus();
+                  }, [statusVisible, topicId]);
                 }}
               >
                 题目状态
               </Button>
               <Button
                 type="primary"
-                onClick={() =>
-                  this.setState({
-                    codeVisible: true,
-                    topicId: item._id,
-                    inputData: item.simpleInput,
-                    outputData: '',
-                  })
-                }
+                onClick={() => {
+                  setCodeVisible(true);
+                  setTopicId(item._id);
+                  setInputData(item.simpleInput);
+                  setOutputData('');
+                }}
               >
                 输入代码
               </Button>
@@ -161,9 +144,54 @@ class ProgramTopic extends React.Component {
     }
     return topicEl;
   };
-
-  getProgramStatus = async () => {
-    const { topicId, examId, answer } = this.state;
+  /**
+   * 获取编译数据
+   * @param id
+   * @returns {Promise<void>}
+   */
+  const getIDEData = async id => {
+    try {
+      const { data } = await ide.getIDEData({
+        id,
+        examId,
+      });
+      if (['Queuing', 'Running'].includes(data.status)) {
+        timer = setTimeout(() => getIDEData(id), 500);
+      } else {
+        clearTimeout(timer);
+        setOutputData(data.outputData || data.errMsg);
+        setCodeLoading(false);
+      }
+    } catch (e) {
+      console.error(e);
+      setCodeLoading(false);
+    }
+  };
+  /**
+   * 代码编译
+   * @param code
+   * @returns {Promise<void>}
+   */
+  const testDataCompile = async code => {
+    await setCodeLoading(true);
+    try {
+      const { data } = await ide.addIDEData({
+        code,
+        examId,
+        language: examInfo.language,
+        inputData,
+      });
+      getIDEData(data.insertedId);
+    } catch (e) {
+      console.error(e);
+      await setCodeLoading(false);
+    }
+  };
+  /**
+   * 获取题目状态
+   * @returns {Promise<void>}
+   */
+  const getProgramStatus = async () => {
     try {
       const { data } = await operation.getProgramStatus({
         topicId,
@@ -171,26 +199,55 @@ class ProgramTopic extends React.Component {
       });
       const index = answer.map(item => item.topicId).indexOf(topicId);
       answer[index].status = data.status;
-      this.setState({
-        status: data.status,
-        answer,
-      });
+      setStatus(data.status);
+      setAnswer(answer.slice());
       const status = data.status.map(item => item.status);
       if (status.includes('Queuing') || status.includes('Running')) {
-        statusTimer = setTimeout(() => this.getProgramStatus(), 500);
+        statusTimer = setTimeout(() => getProgramStatus(), 500);
       } else {
         clearTimeout(statusTimer);
-        this.getTopicInfo();
+        getTopicInfo();
       }
     } catch (e) {
       console.error(e);
     }
   };
-  topicSubmit = async () => {
-    const { answer, examId, topicId } = this.state;
-    await this.setState({
-      loading: true,
-    });
+  /**
+   * 获取题目信息
+   * @returns {Promise<void>}
+   */
+  const getTopicInfo = async () => {
+    await setLoading(true);
+    try {
+      const {
+        data: { topicData, answer },
+      } = await topic.getTopicInfo({ examId, topicType: 'examProgramTopic' });
+      setAnswer(answer);
+      setTopicData(topicData);
+      setLoading(false);
+    } catch (e) {
+      console.error(e);
+      setLoading(false);
+    }
+  };
+  /**
+   * 获取编辑器值
+   * @returns {*}
+   */
+  const getAceValue = () => {
+    const index = answer.map(item => item.topicId).indexOf(topicId);
+    if (index >= 0) {
+      return answer[index].code;
+    } else {
+      return languageModel[examInfo.language];
+    }
+  };
+  /**
+   * 题目提交
+   * @returns {Promise<void>}
+   */
+  const topicSubmit = async () => {
+    setLoading(true);
     const index = answer.map(item => item.topicId).indexOf(topicId);
     const value =
       index >= 0
@@ -203,7 +260,7 @@ class ProgramTopic extends React.Component {
         : [
             {
               topicId,
-              code: this.getAceValue(),
+              code: getAceValue(),
             },
           ];
     try {
@@ -213,22 +270,20 @@ class ProgramTopic extends React.Component {
         answer: value,
       });
       message.success('提交成功');
-      await this.setState({
-        statusVisible: true,
-        codeVisible: false,
-      });
-      this.getProgramStatus();
+      setStatusVisible(true);
+      setCodeVisible(false);
+      getProgramStatus();
     } catch (e) {
       console.error(e);
     } finally {
-      this.setState({
-        loading: false,
-      });
+      setLoading(false);
     }
   };
-
-  aceValueChange = value => {
-    const { answer, topicId } = this.state;
+  /**
+   * 编辑器数据改变
+   * @param value
+   */
+  const aceValueChange = value => {
     const index = answer.map(item => item.topicId).indexOf(topicId);
     if (index >= 0) {
       answer[index].code = value;
@@ -238,186 +293,117 @@ class ProgramTopic extends React.Component {
         code: value,
       });
     }
+    setAnswer(answer.slice());
   };
-
-  getIDEData = async id => {
-    const { examId } = this.state;
-    try {
-      const { data } = await ide.getIDEData({
-        id,
-        examId,
-      });
-      if (['Queuing', 'Running'].indexOf(data.status) >= 0) {
-        timer = setTimeout(() => this.getIDEData(id), 500);
-      } else {
-        clearTimeout(timer);
-        this.setState({
-          outputData: data.outputData || data.errMsg,
-          codeLoading: false,
-        });
-      }
-    } catch (e) {
-      console.error(e);
-      this.setState({
-        codeLoading: false,
-      });
-    }
-  };
-
-  testDataCompile = async code => {
-    const { examInfo, inputData, examId } = this.state;
-    await this.setState({
-      codeLoading: true,
-    });
-    try {
-      const { data } = await ide.addIDEData({
-        code,
-        examId,
-        language: examInfo.language,
-        inputData,
-      });
-      this.getIDEData(data.insertedId);
-    } catch (e) {
-      console.error(e);
-      this.setState({
-        codeLoading: false,
-      });
-    }
-  };
-
-  getAceValue = () => {
-    const { answer, topicId, examInfo } = this.state;
-    const index = answer.map(item => item.topicId).indexOf(topicId);
-    if (index >= 0) {
-      return answer[index].code;
-    } else {
-      return languageModel[examInfo.language];
-    }
-  };
-
-  render() {
-    const {
-      loading,
-      codeVisible,
-      inputData,
-      outputData,
-      examInfo,
-      codeLoading,
-      statusVisible,
-      status,
-      disabled,
-    } = this.state;
-    return (
-      <Spin spinning={loading}>
-        <div className="program-topic">
-          <h1>程序设计题</h1>
-          {this.getTopicCard()}
-          <Modal
-            maskClosable={false}
-            width={800}
-            onCancel={() => {
-              this.setState({ codeVisible: false, codeLoading: false });
-              clearTimeout(timer);
-            }}
-            visible={codeVisible}
-            title="代码输入"
-            bodyStyle={{ display: 'flex' }}
-            footer={
-              <section>
-                <Button
-                  disabled={codeLoading || disabled}
-                  onClick={() => this.testDataCompile(this.getAceValue())}
-                >
-                  样例检测
-                </Button>
-                <Button
-                  disabled={codeLoading || disabled}
-                  onClick={() => this.topicSubmit()}
-                >
-                  提交
-                </Button>
-              </section>
-            }
-          >
-            <Spin spinning={codeLoading} wrapperClassName="spin">
-              <div className="code-input">
-                <Divider orientation="left">程序代码</Divider>
+  return (
+    <Spin spinning={loading}>
+      <div className="program-topic">
+        <h1>程序设计题</h1>
+        {getTopicCard()}
+        <Modal
+          maskClosable={false}
+          width={800}
+          onCancel={() => {
+            setCodeVisible(false);
+            setCodeLoading(false);
+            clearTimeout(timer);
+          }}
+          visible={codeVisible}
+          title="代码输入"
+          bodyStyle={{ display: 'flex' }}
+          footer={
+            <section>
+              <Button
+                disabled={codeLoading || disabled}
+                onClick={() => testDataCompile(getAceValue())}
+              >
+                样例检测
+              </Button>
+              <Button
+                disabled={codeLoading || disabled}
+                onClick={() => topicSubmit()}
+              >
+                提交
+              </Button>
+            </section>
+          }
+        >
+          <Spin spinning={codeLoading} wrapperClassName="spin">
+            <div className="code-input">
+              <Divider orientation="left">程序代码</Divider>
+              <AceEditor
+                mode={languageMode[examInfo.language]}
+                height="350px"
+                width="100%"
+                readOnly={disabled}
+                theme="tomorrow_night_bright"
+                value={getAceValue()}
+                onChange={e => aceValueChange(e)}
+                name="UNIQUE_ID_OF_DIV"
+                editorProps={{ $blockScrolling: true }}
+              />
+            </div>
+            <div className="test-data">
+              <div className="input test">
+                <Divider orientation="left">输入样例</Divider>
                 <AceEditor
-                  mode={languageMode[examInfo.language]}
-                  height="350px"
+                  mode="powershell"
+                  height="130px"
                   width="100%"
                   readOnly={disabled}
+                  value={inputData}
+                  onChange={e => setInputData(e)}
                   theme="tomorrow_night_bright"
-                  value={this.getAceValue()}
-                  onChange={e => this.aceValueChange(e)}
-                  name="UNIQUE_ID_OF_DIV"
                   editorProps={{ $blockScrolling: true }}
                 />
               </div>
-              <div className="test-data">
-                <div className="input test">
-                  <Divider orientation="left">输入样例</Divider>
-                  <AceEditor
-                    mode="powershell"
-                    height="130px"
-                    width="100%"
-                    readOnly={disabled}
-                    value={inputData}
-                    onChange={e => this.setState({ inputData: e })}
-                    theme="tomorrow_night_bright"
-                    editorProps={{ $blockScrolling: true }}
-                  />
-                </div>
-                <div className="output test">
-                  <Divider orientation="left">输出样例</Divider>
-                  <AceEditor
-                    mode="powershell"
-                    height="130px"
-                    width="100%"
-                    value={outputData}
-                    theme="tomorrow_night_bright"
-                    readOnly={true}
-                    editorProps={{ $blockScrolling: true }}
-                  />
-                </div>
+              <div className="output test">
+                <Divider orientation="left">输出样例</Divider>
+                <AceEditor
+                  mode="powershell"
+                  height="130px"
+                  width="100%"
+                  value={outputData}
+                  theme="tomorrow_night_bright"
+                  readOnly={true}
+                  editorProps={{ $blockScrolling: true }}
+                />
               </div>
-            </Spin>
-          </Modal>
-          <Modal
-            maskClosable={false}
-            width={500}
-            visible={statusVisible}
-            onCancel={() => {
-              this.setState({
-                statusVisible: false,
-              });
-              clearTimeout(statusVisible);
-            }}
-            footer={null}
-            title="题目状态"
-          >
-            <Table dataSource={status} pagination={false}>
-              <Column
-                title="ID"
-                key="id"
-                dataIndex="id"
-                render={(text, record, index) => (
-                  <span>{parseInt(index) + 1}</span>
-                )}
-              />
-              <Column
-                title="编译状态"
-                key="status"
-                dataIndex="status"
-                render={text => <Tag color={compileColor[text]}>{text}</Tag>}
-              />
-              <Column title="编译错误问题" key="errMsg" dataIndex="errMsg" />
-            </Table>
-          </Modal>
-        </div>
-      </Spin>
-    );
-  }
-}
+            </div>
+          </Spin>
+        </Modal>
+        <Modal
+          maskClosable={false}
+          width={500}
+          visible={statusVisible}
+          onCancel={() => {
+            setStatusVisible(false);
+            clearTimeout(statusVisible);
+          }}
+          footer={null}
+          title="题目状态"
+        >
+          <Table dataSource={status} pagination={false}>
+            <Column
+              title="ID"
+              key="id"
+              dataIndex="id"
+              render={(text, record, index) => (
+                <span>{parseInt(index) + 1}</span>
+              )}
+            />
+            <Column
+              title="编译状态"
+              key="status"
+              dataIndex="status"
+              render={text => <Tag color={compileColor[text]}>{text}</Tag>}
+            />
+            <Column title="编译错误问题" key="errMsg" dataIndex="errMsg" />
+          </Table>
+        </Modal>
+      </div>
+    </Spin>
+  );
+};
 
 export default ProgramTopic;

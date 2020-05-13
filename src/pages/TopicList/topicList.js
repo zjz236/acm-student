@@ -20,7 +20,7 @@ const TopicList = props => {
   const {
     match: { params },
   } = props;
-  const [examId, setExamId] = useState(params.examId);
+  const [examId] = useState(params.examId);
   const [topicList, setTopicList] = useState([]);
   const [examInfo, setExamInfo] = useState({});
   const status = examInfo

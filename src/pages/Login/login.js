@@ -14,7 +14,7 @@ const Login = props => {
   const {
     match: { params },
   } = props;
-  const [examId, setExamId] = useState(params.examId);
+  const [examId] = useState(params.examId);
   const [examInfo, setExamInfo] = useState({});
   const status = examInfo
     ? examStatus(examInfo.startTime, examInfo.finishTime)
