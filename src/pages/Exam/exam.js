@@ -336,7 +336,7 @@ const Exam = props => {
         <a
           target="_blank"
           rel="noopener noreferrer"
-          href="https://zjz236.github.io/"
+          href="https://zjz236.github.io/blog"
         >
           朱锦泽
         </a>
